@@ -10,7 +10,7 @@
         <div class="type">{{ book.condition }} Condition</div>
         <div class="type">{{ book.description }}</div>
         <div class="seller">
-            Sold by: <a href="#">{{ book.user.get().email }}</a>
+            Sold by: <a href="#">{{ book.owner.get().firstName }} {{ book.owner.get().lastName }}</a>
         </div>
     </div>
     <div class="sellingInfo">
