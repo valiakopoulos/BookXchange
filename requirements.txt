@@ -1,0 +1,7 @@
+#python-saml
+webapp2
+jinja2
+markupsafe
+webob
+google-cloud
+google-cloud-datastore

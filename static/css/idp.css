@@ -1,0 +1,136 @@
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; }
+body { line-height: 1;  }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before,
+blockquote:after,
+q:before, q:after { content: ''; content: none; }
+:focus { outline: 0; }
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+table { border-collapse: collapse; border-spacing: 0; }
+
+html { height: 100%; width: 100%; }
+body { height: 100%; width: 100%; background: #f8f8f8; color: #999999; text-align: center; font-family: Arial, Helvetica, sans-serif; }
+.hide-me { display: none; }
+.clean { clear: both; }
+.top-buffer {
+    margin-top: -5px;
+}
+.page {  height: 100%; width: 100%; min-width: 400px; }
+a { color: #333333; text-decoration: none; font-weight: bold; }
+a:hover { text-decoration: underline; color: #333333; }
+a:active { position: relative; bottom: -1px; }
+.content { display: block; }
+.form label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+.form .input-text { font-size: 18px; display: block; margin-bottom: 25px; border: 1px solid #cccccc; padding: 12px 10px; width: 100%; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
+.form .login { margin-bottom: 30px; padding-top: 10px; position: relative; display: block; h }
+.login .input-btn { font-family: arial, sans-serif; display: block; float: left; padding: 15px 20px; margin-right: 20px; cursor: pointer; border: 0px; background: #333333; color: #ffffff; text-align: center; font-size: 18px; font-weight: bold; text-transform: uppercase; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
+.uwmlogo { background: url(/static/images/logo_uwm.png) left top no-repeat; margin-bottom: 20px; display: block; width: 162px;  height:55px; margin-left: -6px; margin-top: -20px; background-size: 100%;}
+.logo { background: url(/static/images/1Login-logo.png) left top no-repeat; margin-bottom: 30px; display: block; width: 120px;  height:56px; position: absolute; right: 0px; top: 20px; background-size: 60%; }
+.uwmlogo a { display: block; width: 146px;  height:42px; }
+.uwmlogo a { display: block; width: 146px;  height:42px; }
+.logo a { display: block; width: 60px;  height:40px; }
+.form fieldset { padding: 0 0 0px 0;}
+.form legend { display: none; }
+.form .note { font-size: 12px; margin-bottom: 20px; }
+.form .alert { padding: 15px 0; text-align: center; font-size: 12px;  margin-bottom: 30px; line-height: 1.5em; color: #000000; border: 1px solid #d6e1e7; clear: both; margin-top: 5px; background: #f1faff;-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
+.form .alert img { margin-bottom: -2px; margin-right: 5px; }
+.short { text-align: left; height: 128px; padding: 70px 20px 0px 178px; color: #333333; background: url(/idp/assets/warning_128.gif) 40px 40px no-repeat; }
+.short h1 { font-size: 22px; margin-bottom: 0px; line-height: 1.4em; }
+.short p { font-size: 12px; line-height: 1.4em; }
+.note { background: #fff7da; border-radius: 4px; border: 1px solid #f6db78; padding: 10px 15px; line-height: 1.5em; font-size: 12px !important; }
+        .note ul { list-style: disc; padding: 10px 20px; }
+.form { width: 100%; padding: 30px 30px 10px 30px; font-size: 14px; text-align: left; color: #333333; background: #ffffff; display: block; position: relative; }
+.form form {  }
+.policy {  }
+
+.middle {position: relative; top: 0;}
+.middle[class] { vertical-align: top; }
+.form { box-shadow: 0 0 0px #999999; }
+.login .input-btn { float: none; width: 100%; height: 60px; font-size: 20px;border: 0px; background: #333333; color: #ffffff; font-weight: bold; text-transform: uppercase; }
+.login .help { font-size: 14px; clear: both; text-align: center; padding-top: 30px; width: 100%; float: none; line-height: 1.6em; }
+.policy { font-size: 14px; border-top: 1px solid #e5e5e5; background: #f8f8f8; color: #666666; text-align: center; line-height: 1.6em; padding: 20px 40px; }
+.noob { font-size: 10px; clear: both; text-align: right; }
+
+
+
+.ie .outer { display: block; width: auto; position: relative; width: 430px; margin: 30px auto 0 auto; }
+.ie .inner {width: auto; margin-left: auto; margin-right: auto; }
+.ie .outer {height: auto; position: relative; }
+.ie .middle {position: relative; top: auto;}
+.ie .inner { position: relative; padding: 0 0 0px 0; }
+.ie .content { display: block; width: 430px; margin: 0px auto 0 auto; }
+.ie .form { padding: 40px 40px 10px 40px; border: 1px solid #e5e5e5; width: 100%; }
+.ie .login { height: 60px; }
+.ie .login .help { padding-top: 2px; display: block; font-size: 12px; width: 210px; position: absolute; right: 0px; top: 0px; }
+.ie .form .input-text {  height: 45px; padding: 10px; }
+
+.ie .login .input-btn { font-family: arial, sans-serif; position: absolute; left: 0px; top: 0px; padding: 15px 20px; margin-right: 20px; width: 100px; cursor: pointer; border: 0px; background: #333333; color: #ffffff; text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; }
+.ie .policy { font-size: 12px; border: 0px;  }
+
+@media (min-width: 600px) {
+        .outer {width: 100%; position: absolute; }
+        .inner {width: 100%; margin-left: auto; margin-right: auto; }
+        .outer {height: 100%; position: relative; }
+        .outer[class] {display: table; position: static; }
+        .middle {position: absolute; top: 50%;}
+        .middle[class] {display: table-cell; vertical-align: middle; position: static; }
+        .inner { position: relative; padding: 0 0 0px 0; }
+        .content { display: block; width: 430px; margin: 0px auto 0 auto; }
+        .form { padding: 40px 40px 10px 40px; box-shadow: 0 0 2px #999999; width: 100%; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
+        .login { height: 60px; }
+        .login .help { padding-top: 0px; display: block; font-size: 12px; width: 210px; position: absolute; right: 0px; top: 0px; }
+        .login .input-btn { font-family: arial, sans-serif; position: absolute; left: 0px; top: 0px; padding: 15px 20px; margin-right: 20px; width: 100px; cursor: pointer; border: 0px; background: #333333; color: #ffffff; text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
+        .policy { font-size: 12px;  }
+}
+
+
+.content {
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.errorbox {
+        font-family: arial, sans-serif;
+        text-align: left;
+        height: 128px;
+        padding: 70px 20px 0px 178px;
+        color: #333333;
+        background: url(/idp/assets/uwm_logomark.gif) 40px 40px no-repeat;
+}
+
+.errorbox h2 {
+        font-size: 20px;
+        line-height: 1.4em;
+}
+
+.errorbox h1 {
+        font-size: 24px;
+        margin-bottom: 0px;
+        line-height: 1.4em;
+        height: 40px;
+        padding-left: 40px;
+        background: url(/idp/assets/warning_sm.gif) no-repeat;
+}
+
+.errorbox p {
+	font-size: 18px;
+	margin-bottom: 0px;
+	width: 80%;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.errorbox li {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 1.6em;
+}
+
+.errorbox div.sub-bullet {
+        font-size: 14px;
+        line-height: 1.4em;
+}
+
