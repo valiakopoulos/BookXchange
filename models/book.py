@@ -1,14 +1,6 @@
 from google.appengine.ext import ndb
 import logging, datetime
 
-def _computed_property(self):
-    words = list(self.author)
-    words.append(self.title)
-    words.append(self.isbn13)
-    words.append(self.isbn10)
-    words = " ".join(words)
-    return words.split()
-
 class Book(ndb.Model):
     title = ndb.StringProperty()
     author = ndb.StringProperty()
@@ -19,7 +11,7 @@ class Book(ndb.Model):
     reviews = ndb.IntegerProperty(default=0)
     rating = ndb.FloatProperty(default=0.0)
     dateAdded = ndb.DateTimeProperty(auto_now_add=True)
-    searchTerms = ndb.ComputedProperty(_computed_property, repeated=True)
+    #searchTerms = ndb.ComputedProperty(_computed_property, repeated=True)
         #lambda self: (" ".join(self.author + [self.title, self.isbn13, self.isbn10])).lower().split(), repeated=True)
 
     @classmethod

@@ -32,7 +32,11 @@ class AddBookHandler(BaseHandler):
         binding = self.request.get('binding')
         condition = self.request.get('condition')
         description = self.request.get('description')
-        price = float(self.request.get('price'))
+        # Quietly ignore errors for now
+        try:
+            price = float(self.request.get('price'))
+        except:
+            price = 0.0
         new_book = Book.add_book(title, author, edition, isbn10, isbn13, binding)
         email = self.session.get('email')
         user = User.get_user(email)

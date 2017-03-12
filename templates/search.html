@@ -1,0 +1,33 @@
+﻿{% include "header.html" %}
+
+<div class="row">
+    <div class="container">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+            <div class="panel panel-warning">
+                <div class="panel-body">
+                    <h3 class="top-buffer">
+                        Filters
+                    </h3>
+                    <hr />
+                    Filters could go here
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="panel panel-warning">
+                <div class="panel-body">
+                    <h3 class="top-buffer">
+                        Search Results
+                    </h3>
+                    <hr />
+                    {% for book in books %}
+                        {% include "home_page_book.html" %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+</div>
+
+{% include "footer.html" %}

@@ -20,7 +20,8 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/', handler=MainHandler, name='home'),
     webapp2.Route('/login', handler=LoginHandler, name='login'),
     webapp2.Route('/logout', handler=LogoutHandler, name='logout'),
-    webapp2.Route('/addbook/<action><:/?>', handler=AddBookHandler, name='addbook')
+    webapp2.Route('/addbook/<action><:/?>', handler=AddBookHandler, name='addbook'),
+    webapp2.Route('/search', handler=SearchHandler, name='search'),
 ], config=config, debug=True)
 
     #webapp2.Route('/saml', handler=AuthHandler, name='saml'),
