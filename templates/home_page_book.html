@@ -1,8 +1,20 @@
-﻿<p>Title: {{ book.book.get().title }}</p>
-<p>Author: {{ book.book.get().author }}</p>
-<p>Edition: {{ book.book.get().edition }}</p>
-<p>ISBN-10: {{ book.book.get().isbn10 }}</p>
-<p>ISBN-13: {{ book.book.get().isbn13 }}</p>
-<p>Binding: {{ book.book.get().binding }}</p>
-<p>Condition: {{ book.condition }}</p>
-<p>Description: {{ book.description }}</p>
+﻿<div class="book panel">
+    <div class="image">
+        <img src="http://lousybookcovers.com/wp-content/uploads/2014/03/cover_lg.jpg"/>
+    </div>
+    <div class="info">
+        <div class="title">{{ book.book.get().title }} (Ed. {{ book.book.get().edition }})</div>
+        <div class="author">{{ book.book.get().author }}</div>
+        <div class="isbn">{{ book.book.get().isbn10 }} ({{ book.book.get().isbn13 }})</div>
+        <div class="type">{{ book.book.get().binding }}</div>
+        <div class="type">{{ book.condition }} Condition</div>
+        <div class="type">{{ book.description }}</div>
+        <div class="seller">
+            Sold by: <a href="#">Garrett Missiaen</a>
+        </div>
+    </div>
+    <div class="sellingInfo">
+        <div class="price">$35.00</div>    
+        <!--<button class="buy">BUY</button>-->
+    </div>
+</div>

@@ -1,45 +1,51 @@
 ﻿{% include "header.html" %}
 
-<div class="row">
-    <div class="container">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-5">
-            <div class="panel panel-warning">
-                <div class="panel-body">
-                    <h3 class="top-buffer">
-                        Want To Buy
-                        <small>
-                            <span class="btn-group pull-right">
-                                <button class="btn btn-mini" onclick="location.href='/addbook/request';">Request Book</button>
-                            </span>
-                        </small>
-                    </h3>
-                    <hr />
+<div id="Main" role="main">
+    <div class="sizeWrapper">
+        <div class="profilePageWrapper">
+            {% if user %}
+                <div class="aside">
+                    <div class="profile panel">
+                        <div class="name">{{ user.email}}</div>
+                        <div class="stat">12 Sold</div>
+                        <div class="stat">4 Purchased</div>
+                        <div class="stat">Good Reputation</div>
+                    </div>
+                    <div class="reviews panel">
+                        <div class="reviewsHeader">Reviews</div>
+                        <div class="review">
+                            <div class="reviewStars">★★★★★</div>
+                            <div class="reviewText">"Garrett was fantastic, even gave me a box of chocolates with my book. 10/10 would buy from again."</div>
+                            <div class="reviewer">-<a href="#">Danny Domitrz</a></div>
+                        </div>    
+                        <div class="review">
+                            <div class="reviewStars">★★★☆☆</div>
+                            <div class="reviewText">"Good deal."</div>
+                            <div class="reviewer">-<a href="#">Samuel Jackson</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bookListing">
+                    <div class="bookSectionHeader">
+                        <div>Selling</div>
+                        <button onclick="location.href='/addbook/sell';">ADD</button>
+                    </div>
                     {% for book in sellbooks %}
                         {% include "home_page_book.html" %}
                     {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-5">
-            <div class="panel panel-warning">
-                <div class="panel-body">
-                    <h3 class="top-buffer">
-                        Want To Sell
-                        <small>
-                            <span class="btn-group pull-right">
-                                <button class="btn btn-mini" onclick="location.href='/addbook/sell';">Sell Book</button>
-                            </span>
-                        </small>
-                    </h3>
-                    <hr />
+                    <div class="bookSectionHeader">
+                        <div onclick="location.href='/addbook/request';">Wanted</div>
+                        <button>ADD</button>
+                    </div>
                     {% for book in buybooks %}
                         {% include "home_page_book.html" %}
                     {% endfor %}
                 </div>
-            </div>
+            {% else %}
+                <div style="text-align: center; width: 100%;">Please Log In</div>
+            {% endif %}
         </div>
-        <div class="col-lg-1"></div>
+    </div>
 </div>
 
 {% include "footer.html" %}
