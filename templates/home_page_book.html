@@ -10,11 +10,11 @@
         <div class="type">{{ book.condition }} Condition</div>
         <div class="type">{{ book.description }}</div>
         <div class="seller">
-            Sold by: <a href="#">book.user.get().email</a>
+            Sold by: <a href="#">{{ book.user.get().email {{</a>
         </div>
     </div>
     <div class="sellingInfo">
-        <div class="price">${{book.price}}</div>    
+        <div class="price">{{ "${:.2f}".format(book.price) }}</div>    
         <!--<button class="buy">BUY</button>-->
     </div>
 </div>
