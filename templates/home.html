@@ -28,14 +28,14 @@
                 <div class="bookListing">
                     <div class="bookSectionHeader">
                         <div>Selling</div>
-                        <button onclick="location.href='/addbook/sell';">ADD</button>
+                        <button onclick="location.href='/addbook/request';">ADD</button>
                     </div>
                     {% for book in sellbooks %}
                         {% include "home_page_book.html" %}
                     {% endfor %}
                     <div class="bookSectionHeader">
-                        <div onclick="location.href='/addbook/request';">Wanted</div>
-                        <button>ADD</button>
+                        <div>Wanted</div>
+                        <button onclick="location.href='/addbook/sell';">ADD</button>
                     </div>
                     {% for book in buybooks %}
                         {% include "home_page_book.html" %}
