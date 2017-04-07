@@ -1,20 +1,18 @@
 ﻿<div class="book panel">
     <div class="image">
-        <img src="http://lousybookcovers.com/wp-content/uploads/2014/03/cover_lg.jpg"/>
+        <img src="{{ book.thumbnail }}" />
     </div>
     <div class="info">
-        <div class="title">{{ book.book.get().title }} (Ed. {{ book.book.get().edition }})</div>
-        <div class="author">{{ book.book.get().author }}</div>
-        <div class="isbn">{{ book.book.get().isbn10 }} ({{ book.book.get().isbn13 }})</div>
-        <div class="type">{{ book.book.get().binding }}</div>
-        <div class="type">{{ book.condition }} Condition</div>
+        <div class="title">{{ book.title }} (Ed.)</div>
+        <div class="author">{{ book.authors }}</div>
+        <div class="isbn">{{ book.isbn10 }} ({{ book.isbn13 }})</div>
         <div class="type">{{ book.description }}</div>
         <div class="seller">
-            Sold by: <a href="#">{{ book.owner.get().firstName }} {{ book.owner.get().lastName }}</a>
+            Sold by: <a href="#">{{ book.first_name }} {{ book.last_name }}</a>
         </div>
-    </div>
-    <div class="sellingInfo">
-        <div class="price">{{ "${:.2f}".format(book.price) }}</div>    
-        <!--<button class="buy">BUY</button>-->
+        <div class="sellingInfo">
+            <div class="price">{{ '%0.2f'| format(book.price|float) }}</div>
+            <!--<button class="buy">BUY</button>-->
+        </div>
     </div>
 </div>

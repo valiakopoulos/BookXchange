@@ -1,0 +1,32 @@
+{
+    "security": {
+        "nameIdEncrypted": false,
+        "authnRequestsSigned": true,
+        "logoutRequestSigned": false,
+        "logoutResponseSigned": false,
+        "signMetadata": false,
+        "wantMessagesSigned": false,
+        "wantAssertionsSigned": false,
+        "wantNameId" : true,
+        "wantNameIdEncrypted": false,
+        "wantAssertionsEncrypted": false,
+        "signatureAlgorithm": "http://www.w3.org/2000/09/xmldsig#rsa-sha1"
+    },
+    "contactPerson": {
+        "technical": {
+            "givenName": "Steve Hawkins",
+            "emailAddress": "hawkin57@uwm.edu"
+        },
+        "support": {
+            "givenName": "Steve Hawkins",
+            "emailAddress": "hawkin57@uwm.edu"
+        }
+    },
+    "organization": {
+        "en-US": {
+            "name": "Book Xchange",
+            "displayname": "Book Xchange",
+            "url": "http://bookxchange-cs595.appspot.com/"
+        }
+    }
+}

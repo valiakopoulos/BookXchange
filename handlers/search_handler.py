@@ -1,7 +1,11 @@
 from handlers.base_handler import BaseHandler
 from models.user import User
+from models.book import Book
 from models.book_listing import BookListing
 import logging
+from apiclient.discovery import build
+
+service = build('books', 'v1', developerKey='AIzaSyAn733zHPazBuXZ_HRomciIVzgr5pJpcHk')
 
 class SearchHandler(BaseHandler):
     def get(self):
@@ -13,13 +17,14 @@ class SearchHandler(BaseHandler):
         email = self.session.get('email')
         user = User.get_user(email)
         logging.info(user)
-        books = BookListing.search(self.request.get('search'))
-        print(books)
+        books = Book.find_book(searchTerms=self.request.get('search'))
+        listings = BookListing.get_listings(books=books)
+        print(listings)
+        #print(books)
         context = {
             'title': "Book Xchange",
             'user': user,
-            'books': books
+            'books': listings
         }
-        print(context)
         template = self.template_env.get_template('search.html')
         self.response.write(template.render(context))

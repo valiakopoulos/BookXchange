@@ -24,30 +24,37 @@ class AddBookHandler(BaseHandler):
         self.response.write(template.render(context))
 
     def post(self, action):
-        title = self.request.get('title')
-        author = self.request.get('author')
-        edition = self.request.get('edition')
-        isbn10 = self.request.get('isbn10')
-        isbn13 = self.request.get('isbn13')
-        binding = self.request.get('binding')
-        condition = self.request.get('condition')
+        error = False
+        binding = ''
+        condition = ''
+        google_id = self.request.get('google_id')
+        try:
+            binding = self.request.get('binding')
+            condition = self.request.get('condition')
+        except:
+            pass
         description = self.request.get('description')
         # Quietly ignore errors for now
         try:
             price = float(self.request.get('price'))
         except:
             price = 0.0
-        new_book = Book.add_book(title, author, edition, isbn10, isbn13, binding)
-        email = self.session.get('email')
-        user = User.get_user(email)
-        if action == 'sell':
-            BookListing.sell_book(new_book, user.key, price, condition, description)
+        new_book = Book.add_book(google_id)
+        if new_book is None:
+            print('Error inserting book with google_id of ' + google_id + '!')
+            error = True
         else:
-            BookListing.buy_book(new_book, user.key, price, condition, description)
-        logging.info(user)
+            email = self.session.get('email')
+            user = User.get_user(email)
+            if action == 'sell':
+                BookListing.sell_book(new_book, user.id, price, condition, description)
+            else:
+                BookListing.request_book(new_book, user.id, price, condition, description)
+            logging.info(user)
         context = {
             'title': "Book Xchange - Book Listed!",
-            'user': user
+            'user': user,
+            'error': error
         }
         template = self.template_env.get_template('addbook.html')
         self.response.write(template.render(context))

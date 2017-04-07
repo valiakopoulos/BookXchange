@@ -16,7 +16,7 @@
 #       range.
 #
 
-bind = '127.0.0.1:8080'
+bind = ':8080'
 reload = True
 backlog = 2048
 
@@ -139,7 +139,7 @@ tmp_upload_dir = None
 #
 
 errorlog = '-'
-loglevel = 'debug'
+loglevel = 'info'
 accesslog = '-'
 access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"'
 

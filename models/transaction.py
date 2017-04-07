@@ -1,3 +1,7 @@
+class Transaction():
+    pass
+
+"""
 from google.appengine.ext import ndb
 from models.user import User
 from models.book import Book
@@ -16,3 +20,4 @@ class Transaction(ndb.Model):
     def add_transaction(cls, seller, buyer, book, price):
         new_transaction = Transaction(seller=seller, buyer=buyer, book=book, price=price)
         return new_transaction.put()
+"""

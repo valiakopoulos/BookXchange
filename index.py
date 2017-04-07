@@ -1,29 +1,39 @@
-import os
-import logging
-import webapp2
-import jinja2
-#from onelogin.saml2.utils import OneLogin_Saml2_Utils
-
-# Handler list
+import os, logging, webapp2, jinja2
 from handlers import *
-#from handlers.auth_handler import AuthHandler
-#from handlers.attrs_handler import AttrsHandler
-#from handlers.metadata_handler import MetadataHandler
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+# Add required paths
+#import sys
+#import google
+#sys.path.insert(0, '/home/vmagent/app/lib')
 
 # Setup configuration
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'cs595isgreat',}
 config['SECRET_KEY'] = 'cs595isgreat'
-#config['SAML_PATH'] = os.path.join(os.path.dirname(__file__), 'saml')
+config['SAML_PATH'] = os.path.join(os.path.dirname(__file__), 'saml')
+config['STATIC_PATH'] = os.path.join(os.path.dirname(__file__), 'static')
 
-app = webapp2.WSGIApplication([
+# Add appropriate routes
+# HAML Team - If you're adding new handles add them here. Make sure the a comma is added!
+routes = [
     webapp2.Route('/', handler=MainHandler, name='home'),
-    webapp2.Route('/login', handler=LoginHandler, name='login'),
-    webapp2.Route('/logout', handler=LogoutHandler, name='logout'),
     webapp2.Route('/addbook/<action><:/?>', handler=AddBookHandler, name='addbook'),
     webapp2.Route('/search', handler=SearchHandler, name='search'),
-], config=config, debug=True)
+    webapp2.Route('/searchbook', handler=SearchBookHandler, name='searchbook'),
+    webapp2.Route('/login', handler=LoginHandler, name='login'),
+    webapp2.Route('/logout', handler=LogoutHandler, name='logout'),
+    webapp2.Route('/static/<directory>/<file>', StaticFileHandler)
+]
 
-    #webapp2.Route('/saml', handler=AuthHandler, name='saml'),
-    #webapp2.Route('/saml/attrs', handler=AttrsHandler, name='samlattrs'),
-	#webapp2.Route('/saml/metadata', handler=MetadataHandler, name='samlmetadata')
+# If this variable is set, then use SAML.
+if 'BOOKXCHANGE_PROD' in os.environ:
+    print("Using UWM Login system")
+    routes.append(webapp2.Route('/saml', handler=AuthHandler, name='saml'))
+    routes.append(webapp2.Route('/saml/', handler=AuthHandler, name='samlslash'))
+    routes.append(webapp2.Route('/saml/attrs', handler=AttrsHandler, name='samlattrs'))
+    routes.append(webapp2.Route('/saml/metadata', handler=MetadataHandler, name='samlmetadata'))
+
+app = webapp2.WSGIApplication(routes, config=config, debug=True)

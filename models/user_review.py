@@ -1,3 +1,7 @@
+
+class UserReview():
+    pass
+"""
 from google.appengine.ext import ndb
 from models.user import User
 import logging, datetime
@@ -21,3 +25,4 @@ class UserReview(ndb.Model):
     @classmethod
     def get_reviews_by_reviewee(cls, reviewee):
         return UserReview.query(UserReview.reviewee == reviewee).fetch()
+"""

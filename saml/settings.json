@@ -1,0 +1,30 @@
+{
+  "strict": false,
+  "debug": true,
+  "sp": {
+    "entityId": "https://bookxchange-cs595.appspot.com/saml/metadata",
+    "assertionConsumerService": {
+      "url": "https://bookxchange-cs595.appspot.com/saml/?acs",
+      "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+    },
+    "singleLogoutService": {
+      "url": "https://bookxchange-cs595.appspot.com/saml/?sls",
+      "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+    },
+    "NameIDFormat": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
+    "x509cert": "",
+    "privateKey": ""
+  },
+  "idp": {
+    "entityId": "https://wayf.uwm.edu/metadata/uwm-idp-metadata.xml",
+    "singleSignOnService": {
+      "url": "https://idp.uwm.edu/idp/profile/SAML2/Redirect/SSO",
+      "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+    },
+    "singleLogoutService": {
+      "url": "https://idp.uwm.edu/idp/profile/Logout",
+      "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+    },
+    "x509cert": "MIIDFzCCAf+gAwIBAgIUbFErp3WyjGb0Y8Vx0lm64o2ZtiYwDQYJKoZIhvcNAQEFBQAwFjEUMBIGA1UEAxMLaWRwLnV3bS5lZHUwHhcNMTAxMTAzMjEzMjI5WhcNMzAxMTAzMjIzMjI5WjAWMRQwEgYDVQQDEwtpZHAudXdtLmVkdTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAM4wiD9O2YU8lIGa5Hb/N4XQ+5TJUJUZBE0wtEj/u1RyQ6/dY7CFWUMO8OfU7QtY6xl7fhcT4HtciShNw/Mszal+w6sqVZsm2fhYBUcDAWpnKjNsUPvjG/8w/x0FQzkDmaDdjEOpkF1S1iy83+wuNfCIcEcM23Pp19uKI2h5rhrX/8Z5+J9jng4EkNhih09C62pIdRcsHO0kw/ULp1CiBz3/JbVu4XlqNVkrPGZPdSVMgzczcIIrL9IujIXRjCZaGeKKRTGFodSjsJ/LJN8pApu7px3BVlp757I1oXDjNZ180QRbD9G67CqDoCRH11SZcsFRkimHC51blVGWFGPxSJsCAwEAAaNdMFswOgYDVR0RBDMwMYILaWRwLnV3bS5lZHWGImh0dHBzOi8vaWRwLnV3bS5lZHUvaWRwL3NoaWJib2xldGgwHQYDVR0OBBYEFCgSWfxHyw4HdubVct5qtlHyFsFbMA0GCSqGSIb3DQEBBQUAA4IBAQBEW3tnceYvOy9GO8xUEDURm9EEwSy6L0CaUI9BxKoubp2X1aIjFPTN38ceTFKy8t6ADePJcBshrY0V79ToH/SFaeJKOS+P/a0jvnNcadzJue8Q6LFYUgPpcDnwfqtggevzmVden+w7tcsJQe8imUF1bwuIR+brh17+anlnu7jeNTRRuaE5YERpQU8pBA4fGhBaGWY9Zp6W8vyS1n7iNlY/SxVkhtgi1pU2ymkWh63VRhZk988bCJ76BgmY1M5uR6Dc/sWtr5KtD7ZAFaym1dadFlH09Qo9YjKi23R4lzaJs7iC6ZY6dOu3CjcCE/AhGeGCaig/VkiBvstxMe4R5uVW"
+  }
+}
