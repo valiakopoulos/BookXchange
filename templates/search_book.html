@@ -1,0 +1,12 @@
+﻿<div class="book panel">
+    <div class="image">
+        <img src="{{ book.imageLinks.thumbnail }}"/>
+    </div>
+    <div class="info">
+        <div class="title">{{ book.title }}</div>
+        <div class="author">{{ book.authors }}</div>
+        <div class="isbn">{{ book.ISBN_10 }} ({{ book.ISBN_13 }})</div>
+        <div class="type">{{ book.description }}</div>
+        <input type="hidden" name="google_id" value="{{ book.google_id }}" />
+    </div>
+</div>

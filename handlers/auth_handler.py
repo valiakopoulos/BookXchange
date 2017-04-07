@@ -5,6 +5,7 @@ from urlparse import urlparse
 # SAML stuff
 from onelogin.saml2.auth import OneLogin_Saml2_Auth
 from onelogin.saml2.utils import OneLogin_Saml2_Utils
+from models.user import User
 
 class AuthHandler(BaseHandler):
     def get(self):
@@ -35,12 +36,18 @@ class AuthHandler(BaseHandler):
             errors = auth.get_errors()
             not_auth_warn = not auth.is_authenticated()
             if len(errors) == 0:
-                print(auth.get_attributes())
-                print(auth.get_nameid())
-                print(auth.get_session_index())
                 self.session['samlUserdata'] = auth.get_attributes()
                 self.session['samlNameId'] = auth.get_nameid()
                 self.session['samlSessionIndex'] = auth.get_session_index()
+                email = self.session['samlUserdata']['urn:oid:0.9.2342.19200300.100.1.3']
+                self.session['email'] = email
+                firstName = self.session['samlUserdata']['urn:oid:2.5.4.42']
+                lastName = self.session['samlUserdata']['urn:oid:2.5.4.4']
+                username = self.session['samlUserdata']['urn:oid:0.9.2342.19200300.100.1.1']
+                print('User Info:', email, username, firstName, lastName)
+                if not User.login_user(email, username, firstName, lastName):
+                    # Do something because we failed login
+                    print("Failed to login user")
                 self_url = OneLogin_Saml2_Utils.get_self_url(req)
                 if 'RelayState' in self.request.POST and self_url != self.request.POST['RelayState']:
                     return self.redirect(auth.redirect_to(self.request.POST['RelayState']))

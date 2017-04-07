@@ -1,5 +1,5 @@
 #FROM gcr.io/google_appengine/python
-FROM us.gcr.io/bookxchange-cs595/appengine/default.v1:main
+FROM us.gcr.io/bookxchange-cs595/appengine/default.v1:april6th
 #LABEL python_version=python
 #RUN virtualenv /env -p python
 

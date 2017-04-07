@@ -5,86 +5,85 @@
         <div class="col-lg-3"></div>
         {% if getAction %}
             <div class="col-lg-6">
+                <form class="form-horizontal" id="searchBookForm">
+                    <div class="form-group">
+                        <label for="isbn" class="col-sm-2 control-label">ISBN</label>
+                        <div class="col-sm-10 form-inline">
+                            <input type="text" class="form-control" id="isbn" placeholder="ISBN" name="isbn">
+                            <button type="submit" class="btn btn-primary">Go</button>
+                        </div>
+                    </div>
+                </form>
                 <form class="form-horizontal" method="post">
-                    <div class="form-group">
-                        <label for="title" class="col-sm-2 control-label">Title</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="title" placeholder="Book Title" name="title">
+                    <div id="bookplacement"></div>
+                    {% if selling %}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Binding</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="binding">
+                                    <option value="1">Paperback</option>
+                                    <option value="2">Hardcover</option>
+                                    <option value="3">Loose Leaf</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="author" class="col-sm-2 control-label">Author</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="author" placeholder="Author" name="author">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Condition</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="condition">
+                                    <option value="1">New</option>
+                                    <option value="2">Like New</option>
+                                    <option value="3">Very Good</option>
+                                    <option value="3">Good</option>
+                                    <option value="3">Acceptable</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="edition" class="col-sm-2 control-label">Edition</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="edition" placeholder="Edition" name="edition">
+                        <div class="form-group">
+                            <label for="price" class="col-sm-2 control-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="price" placeholder="75.00" name="price">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="isbn10" class="col-sm-2 control-label">ISBN-10</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="isbn10" placeholder="ISBN-10" name="isbn10">
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">Comments</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="description" placeholder="Bears drawn inside cover." name="description">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="isbn13" class="col-sm-2 control-label">ISBN-13</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="isbn13" placeholder="ISBN-13" name="isbn13">
+                    {% else %}
+                        <div class="form-group">
+                            <label for="price" class="col-sm-2 control-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="price" placeholder="75.00" name="price">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Binding</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="binding">
-                                <option value="1">Paperback</option>
-                                <option value="2">Hardcover</option>
-                                <option value="3">Loose Leaf</option>
-                            </select>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">Comments</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="description" placeholder="Bears drawn inside cover." name="description">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Condition</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="condition">
-                                <option value="1">New</option>
-                                <option value="2">Like New</option>
-                                <option value="3">Very Good</option>
-                                <option value="3">Good</option>
-                                <option value="3">Acceptable</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="price" class="col-sm-2 control-label">Price</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="price" placeholder="75.00" name="price">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-sm-2 control-label">Description</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="description" placeholder="Description" name="description">
-                        </div>
-                    </div>
+                    {% endif %}
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             {% if selling %}
-                                <button type="submit" name="selling" class="btn btn-default">Sell Book</button>
+                                <button type="submit" name="selling" class="btn btn-default" id="addbook_button" disabled>Sell Book</button>
                             {% else %}
-                                <button type="submit" name="request" class="btn btn-default">Request Book</button>
+                                <button type="submit" name="request" class="btn btn-default" id="addbook_button" disabled>Request Book</button>
                             {% endif %}
                         </div>
                     </div>
                 </form>
             </div>
         {% else %}
-            <div class="col-lg-6">Book added!</div>
+            {% if error %}
+                <div class="col-lg-6">Error adding the book! Sorry!</div>
+            {% else %}
+                <div class="col-lg-6">Book added!</div>
+            {% endif %}
         {% endif %}
         <div class="col-lg-3"></div>
     </div>
-
+    <script src="/static/js/addbook.js"></script>
 {% include "footer.html" %}

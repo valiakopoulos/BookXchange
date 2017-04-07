@@ -1,46 +1,46 @@
-from google.appengine.ext import ndb
-from models.book import Book
-from models.user import User
+from models import _User, _Book, _BookListing, db
+from copy import deepcopy
 import logging, datetime
 
-def _computed_property(self):
-    book = self.book.get()
-    searchTerms = ' '.join([book.author, book.title, book.isbn13, book.isbn10, self.description]).lower()
-    return searchTerms.split()
-
-class BookListing(ndb.Model):
-    book = ndb.KeyProperty(kind=Book)
-    owner = ndb.KeyProperty(kind=User)
-    price = ndb.FloatProperty(default=0.0)
-    condition = ndb.StringProperty(default='')
-    active = ndb.BooleanProperty(default=True)
-    description = ndb.StringProperty(default='')
-    forSale = ndb.BooleanProperty(default=False)
-    wanted = ndb.BooleanProperty(default=False)
-    dateAdded = ndb.DateTimeProperty(auto_now_add=True)
-    searchTerms = ndb.ComputedProperty(_computed_property, repeated=True)
-
-    @classmethod
-    def sell_book(cls, book, owner, price, condition='', description=''):
-        new_listing = BookListing(book=book, owner=owner, price=price, condition=condition, description=description, forSale=True, parent=owner)
-        return new_listing.put()
-
-    @classmethod
-    def buy_book(cls, book, owner, price, condition='', description=''):
-        new_listing = BookListing(book=book, owner=owner, price=price, condition=condition, description=description, wanted=True, parent=owner)
-        return new_listing.put()
-
-    @classmethod
-    def search(cls, searchTerms):
-        #http://stackoverflow.com/questions/14291863/ndb-query-partial-string-matching
-        # ^Will use that, sooner or later.
-        searchTerms = searchTerms.lower().split(' ')
-        return BookListing.query().filter(BookListing.searchTerms.IN(searchTerms)).fetch()
-
+class BookListing():
     @classmethod
     def get_requested_books(cls):
-        return BookListing.query(BookListing.forSale == False).fetch()
+        return []
 
     @classmethod
     def get_available_books(cls):
-        return BookListing.query(BookListing.forSale == True).fetch()
+        return []
+
+    @classmethod
+    def sell_book(cls, book_id, user_id, price, condition, description):
+        new_listing = _BookListing(book_id=book_id, user_id=user_id, price=price, condition=condition,
+                                   description=description, date_added=datetime.datetime.now(), listing_type='For Sale')
+        db.add(new_listing)
+        db.commit()
+    
+    @classmethod
+    def request_book(cls, book_id, user_id, price, condition, description):
+        new_listing = _BookListing(book_id=book_id, user_id=user_id, price=price, 
+                                   description=description, date_added=datetime.datetime.now(), listing_type='Wanted')
+        db.add(new_listing)
+        db.commit()
+
+    @classmethod
+    def get_listings(cls, books=None):
+        if books is not None:
+            listings = []
+            for book in books:
+                query = db.query(_BookListing, _User).join(_User).filter(_BookListing.book_id == book.id)
+                if query.count() > 0:
+                    results = query.all()
+                    for result in results:
+                        print(result)
+                        new_listing = deepcopy(book.__dict__)
+                        new_listing['first_name'] = result[1].first_name
+                        new_listing['last_name'] = result[1].last_name
+                        new_listing['condition'] = result[0].condition
+                        new_listing['price'] = result[0].price
+                        new_listing['description'] = result[0].description
+                        new_listing['listing_type'] = result[0].listing_type
+                        listings.append(new_listing)
+            return listings
