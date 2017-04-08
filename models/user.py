@@ -10,7 +10,8 @@ class User():
         Gets the user from the datastore, adds the user if not already there.
         We'll use the autoadd for now since that's how most SSO operations work.
         """
-        logging.info('Attempting to login with email: ' + email)
+        logging.info('Attempting to login with email: ')
+        logging.info(email)
 
         rows = db.query(_User).filter(_User.email == email).count()
         if rows > 0:

@@ -49,8 +49,9 @@ class AuthHandler(BaseHandler):
                     # Do something because we failed login
                     print("Failed to login user")
                 self_url = OneLogin_Saml2_Utils.get_self_url(req)
-                if 'RelayState' in self.request.POST and self_url != self.request.POST['RelayState']:
-                    return self.redirect(auth.redirect_to(self.request.POST['RelayState']))
+                #if 'RelayState' in self.request.POST and self_url != self.request.POST['RelayState']:
+                #    return self.redirect(auth.redirect_to(self.request.POST['RelayState']))
+                return self.redirect('/')
         elif 'sls' in self.request.GET:
             ## Not sure this will work
             dscb = lambda: self.session.clear()
@@ -74,8 +75,10 @@ class AuthHandler(BaseHandler):
             "attributes" : attributes,
             "paint_logout" : paint_logout
         }
-        template = self.template_env.get_template('index.html')
-        self.response.write(template.render(context))
+
+        #template = self.template_env.get_template('index.html')
+        #self.response.write(template.render(context))
+        return self.redirect('/')
     
     def post(self):
         req = self.prepare_saml_request(self.request)
@@ -109,9 +112,19 @@ class AuthHandler(BaseHandler):
                 self.session['samlUserdata'] = auth.get_attributes()
                 self.session['samlNameId'] = auth.get_nameid()
                 self.session['samlSessionIndex'] = auth.get_session_index()
+                email = self.session['samlUserdata']['urn:oid:0.9.2342.19200300.100.1.3'][0]
+                self.session['email'] = email
+                firstName = self.session['samlUserdata']['urn:oid:2.5.4.42'][0]
+                lastName = self.session['samlUserdata']['urn:oid:2.5.4.4'][0]
+                username = self.session['samlUserdata']['urn:oid:0.9.2342.19200300.100.1.1'][0]
+                print('User Info:', email, username, firstName, lastName)
+                if not User.login_user(email, username, firstName, lastName):
+                    # Do something because we failed login
+                    print("Failed to login user")
                 self_url = OneLogin_Saml2_Utils.get_self_url(req)
-                if 'RelayState' in self.request.POST and self_url != self.request.POST['RelayState']:
-                    return self.redirect(auth.redirect_to(self.request.POST['RelayState']))
+                #if 'RelayState' in self.request.POST and self_url != self.request.POST['RelayState']:
+                #    return self.redirect(auth.redirect_to(self.request.POST['RelayState']))
+                return self.redirect('/')
         elif 'sls' in self.request.GET:
             ## Not sure this will work
             dscb = lambda: self.session.clear()
@@ -135,8 +148,9 @@ class AuthHandler(BaseHandler):
             "attributes" : attributes,
             "paint_logout" : paint_logout
         }
-        template = self.template_env.get_template('index.html')
-        self.response.write(template.render(context))
+        #template = self.template_env.get_template('index.html')
+        #self.response.write(template.render(context))
+        return self.redirect('/')
         
     def prepare_saml_request(self, request):
         url_data = urlparse(request.url)

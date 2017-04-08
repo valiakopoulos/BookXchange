@@ -16,11 +16,9 @@ class SearchHandler(BaseHandler):
     def post(self):
         email = self.session.get('email')
         user = User.get_user(email)
-        logging.info(user)
         books = Book.find_book(searchTerms=self.request.get('search'))
         listings = BookListing.get_listings(books=books)
         print(listings)
-        #print(books)
         context = {
             'title': "Book Xchange",
             'user': user,
