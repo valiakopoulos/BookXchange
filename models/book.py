@@ -80,8 +80,9 @@ class Book():
                          small_thumbnail=book['imageLinks']['smallThumbnail'], thumbnail=book['imageLinks']['thumbnail']) # published_date=book['publishedDate'],
             db.add(new_book)
             db.commit()
+            book_id = new_book.id
             db.close()
-            return new_book.id
+            return book_id
         except:
             logging.debug("Something went wrong when inserting the book. :-(")
             db.rollback()

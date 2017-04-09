@@ -6,7 +6,10 @@ import logging
 class MainHandler(BaseHandler):
     def get(self):
         email = self.session.get('email')
-        user = User.get_user(email)
+        try:
+            user = User.get_user(email)
+        except AttributeError:
+            user = None
 
         sellbooks = BookListing.get_available_books()
         buybooks = BookListing.get_requested_books()

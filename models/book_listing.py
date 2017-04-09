@@ -161,13 +161,13 @@ class BookListing():
                 if length == 10:
                     try:
                         isbn10 = int(term)
-                        conditions.append(_Book.isbn10 == isbn10)
+                        conditions.append(_Book.ISBN_10 == isbn10)
                     except ValueError:
                         pass
                 elif length == 13:
                     try:
                         isbn13 = int(term)
-                        conditions.append(_Book.isbn13 == isbn13)
+                        conditions.append(_Book.ISBN_13 == isbn13)
                     except ValueError:
                         pass
                 term = '%' + term + '%'
