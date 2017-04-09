@@ -7,22 +7,42 @@
                 <div class="aside">
                     <div class="profile panel">
                         <div class="name">{{ user.email}}</div>
-                        <div class="stat">12 Sold</div>
-                        <div class="stat">4 Purchased</div>
-                        <div class="stat">Good Reputation</div>
+                        <div class="stat">{{ user.sold }} Sold</div>
+                        <div class="stat">{{ user.purchased }} Purchased</div>
+                        <div class="stat">{{ user.listed_for_sale }} Books for Sale</div>
+                        <div class="stat">{{ user.listed_for_purchase }} Books Wanted</div>
+                        <div class="stat">{{ user.rating }} / 5</div>
                     </div>
                     <div class="reviews panel">
                         <div class="reviewsHeader">Reviews</div>
-                        <div class="review">
-                            <div class="reviewStars">★★★★★</div>
-                            <div class="reviewText">"Garrett was fantastic, even gave me a box of chocolates with my book. 10/10 would buy from again."</div>
-                            <div class="reviewer">-<a href="#">Danny Domitrz</a></div>
-                        </div>    
-                        <div class="review">
-                            <div class="reviewStars">★★★☆☆</div>
-                            <div class="reviewText">"Good deal."</div>
-                            <div class="reviewer">-<a href="#">Samuel Jackson</a></div>
-                        </div>
+                        {% if user.reviews|length > 0 %}
+                            {% for review in user.reviews %}
+                                <div class="review">
+                                    <div class="reviewStars">
+                                        {% if review.rating < 0.5 %}
+                                            ☆☆☆☆☆
+                                        {% elif review.rating < 1.5 %}
+                                            ★☆☆☆☆
+                                        {% elif review.rating < 2.5 %}
+                                            ★★☆☆☆
+                                        {% elif review.rating < 3.5 %}
+                                            ★★★☆☆
+                                        {% elif review.rating < 4.5 %}
+                                            ★★★★☆
+                                        {% else %}
+                                            ★★★★★
+                                        {% endif %}
+                                    </div>
+                                    <div class="reviewText">"{{ review.comments }}"</div>
+                                    <div class="reviewer">-<a href="#">{{ review.first_name }} {{ review.last_name }}</a></div>
+                                    <div class="reviewer">{{ review.date_posted }}</a></div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="review">
+                                <div class="reviewText">No one has written awesome things about you yet. :-(</div>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="bookListing">
@@ -31,14 +51,14 @@
                         <button onclick="location.href='/addbook/sell';">ADD</button>
                     </div>
                     {% for book in sellbooks %}
-                        {% include "home_page_book.html" %}
+                        {% include "book_listing.html" %}
                     {% endfor %}
                     <div class="bookSectionHeader">
                         <div>Wanted</div>
                         <button onclick="location.href='/addbook/request';">ADD</button>
                     </div>
                     {% for book in buybooks %}
-                        {% include "home_page_book.html" %}
+                        {% include "book_listing.html" %}
                     {% endfor %}
                 </div>
             {% else %}

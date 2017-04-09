@@ -39,32 +39,19 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="price" class="col-sm-2 control-label">Price</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="price" placeholder="75.00" name="price">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="description" class="col-sm-2 control-label">Comments</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="description" placeholder="Bears drawn inside cover." name="description">
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="form-group">
-                            <label for="price" class="col-sm-2 control-label">Price</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="price" placeholder="75.00" name="price">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="description" class="col-sm-2 control-label">Comments</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="description" placeholder="Bears drawn inside cover." name="description">
-                            </div>
-                        </div>
                     {% endif %}
+                    <div class="form-group">
+                        <label for="price" class="col-sm-2 control-label">Price</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="price" placeholder="75.00" name="price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comments" class="col-sm-2 control-label">Comments</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="comments" placeholder="Bears drawn inside cover." name="comments">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             {% if selling %}

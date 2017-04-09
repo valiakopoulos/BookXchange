@@ -21,3 +21,9 @@ _UserReview = Base.classes.user_review
 Session = sessionmaker(engine)
 db = Session()
 db.flush()
+
+def connect():
+    Session = sessionmaker(engine)
+    db = Session()
+    db.flush()
+    return db

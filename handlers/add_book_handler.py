@@ -24,6 +24,7 @@ class AddBookHandler(BaseHandler):
         self.response.write(template.render(context))
 
     def post(self, action):
+        # Lets _try_ to add the book and all that.
         error = False
         binding = ''
         condition = ''
@@ -33,7 +34,7 @@ class AddBookHandler(BaseHandler):
             condition = self.request.get('condition')
         except:
             pass
-        description = self.request.get('description')
+        comments = self.request.get('comments')
         # Quietly ignore errors for now
         try:
             price = float(self.request.get('price'))
@@ -41,16 +42,17 @@ class AddBookHandler(BaseHandler):
             price = 0.0
         new_book = Book.add_book(google_id)
         if new_book is None:
-            print('Error inserting book with google_id of ' + google_id + '!')
+            logging.debug('Error inserting book with google_id of ' + google_id + '!')
             error = True
         else:
             email = self.session.get('email')
             user = User.get_user(email)
+            print(action)
+            logging.info(action)
             if action == 'sell':
-                BookListing.sell_book(new_book, user.id, price, condition, description)
+                BookListing.sell_book(new_book, user['id'], price, condition, comments)
             else:
-                BookListing.request_book(new_book, user.id, price, condition, description)
-            logging.info(user)
+                BookListing.request_book(new_book, user['id'], price, condition, comments)
         context = {
             'title': "Book Xchange - Book Listed!",
             'user': user,
