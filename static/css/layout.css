@@ -88,6 +88,23 @@ button:active {
     }
 }
 
+input.lowrange, input.highrange {
+    width: 80px;
+}
+
+.filters > div {
+    margin-bottom: 6px;
+}
+
+.filters label {
+    font-weight: normal;
+    width: 80px;
+}
+
+.filters select {
+    width: 110px;
+}
+
 .image {
     width: 150px;
     height: 175px;
