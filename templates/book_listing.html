@@ -3,15 +3,18 @@
         <img src="{{ book.thumbnail }}" />
     </div>
     <div class="info">
-        <div class="title">{{ book.title }} (Ed.)</div>
+        <div class="title">{{ book.title }}{{ ": " + book.subtitle if book.subtitle}}</div>
         <div class="author">{{ book.authors }}</div>
-        <div class="isbn">{{ book.isbn10 }} ({{ book.isbn13 }})</div>
-        <div class="type">{{ book.description }}</div>
+        <div class="isbn">{{ book.ISBN_10 }} ({{ book.ISBN_13 }})</div>
+        <div class="description">{{ book.description }}</div>
+        {% if book.comments %}
+            <div class="comments">Comments: "{{ book.comments }}"</div>
+        {% endif %}
         <div class="seller">
             Sold by: <a href="#">{{ book.first_name }} {{ book.last_name }}</a>
         </div>
         <div class="sellingInfo">
-            <div class="price">{{ '%0.2f'| format(book.price|float) }}</div>
+            <div class="price">${{ '%0.2f'| format(book.price|float) }}</div>
             <!--<button class="buy">BUY</button>-->
         </div>
     </div>

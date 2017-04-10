@@ -166,12 +166,20 @@ button:active {
 .book .info { flex-grow: 1; margin-left: 6px; }
 .book .info div { margin-bottom: 2px; }
 
+.book .info .description, .book .info .description p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 12;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
+}
+
 .book .info .title { font-weight: bold; font-size: 19px; }
 .book .info .author { font-size: 17px; }
 .book .info .isbn { font-style: italic; margin-bottom: 10px;}
-.book .info .seller { font-style: italic; }
-.book .info .type,
-.book .info .condition,
+.book .info .seller, .book .info .comments { font-style: italic; }
+.book .info .description,
+.book .info .comments,
 .book .info .seller {
     color: gray;
 }
