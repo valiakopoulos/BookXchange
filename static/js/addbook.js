@@ -24,3 +24,16 @@ function submitForm() {
         $('#addbook_button').attr('disabled', true);
     });
 }
+
+$(function() {
+    var oldprice = '';
+    $('#price').focus(function() { oldprice = $(this).val(); });
+    $('#price').change(function() {
+        var num = parseFloat($(this).val());
+        if(isNaN(num) || num < 0) {
+            $(this).val(oldprice);
+        } else {
+            $(this).val(num.toFixed(2));
+        }
+    });
+});
