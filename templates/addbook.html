@@ -10,7 +10,7 @@
                         <label for="isbn" class="col-sm-2 control-label">ISBN</label>
                         <div class="col-sm-10 form-inline">
                             <input type="text" class="form-control" id="isbn" placeholder="ISBN" name="isbn">
-                            <button type="submit" class="btn btn-primary">Go</button>
+                            <button type="submit">Go</button>
                         </div>
                     </div>
                 </form>
@@ -55,9 +55,9 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             {% if selling %}
-                                <button type="submit" name="selling" class="btn btn-default" id="addbook_button" disabled>Sell Book</button>
+                                <button type="submit" name="selling" id="addbook_button" disabled>Sell Book</button>
                             {% else %}
-                                <button type="submit" name="request" class="btn btn-default" id="addbook_button" disabled>Request Book</button>
+                                <button type="submit" name="request" id="addbook_button" disabled>Request Book</button>
                             {% endif %}
                         </div>
                     </div>

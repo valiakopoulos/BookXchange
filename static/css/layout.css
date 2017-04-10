@@ -17,16 +17,21 @@ button {
     cursor: pointer;
     font-family: 'Roboto';
     font-weight: bold;
-    outline: none;
+    outline: none !important;
     border-radius: 2px;
     padding: 6px 10px;
     box-shadow: -1px -2px 0px #dca810 inset;
     transition: background-color 300ms, box-shadow 100ms;
 }
-button:hover {
+button:disabled {
+    color: gray;
+    box-shadow: none;
+    background-color: #ffe8a6;
+}
+button:hover:not(:disabled) {
     background-color: #ffd660;
 }
-button:active {
+button:active:not(:disabled) {
     background-color: #ffc20f;
     box-shadow: 0px -1px 0px #dca810 inset;
 }
