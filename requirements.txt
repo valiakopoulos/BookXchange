@@ -3,7 +3,6 @@ jinja2
 markupsafe
 webob
 google-cloud
-gunicorn
 pyyaml
 sqlalchemy
 pymysql
