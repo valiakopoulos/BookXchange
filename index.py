@@ -1,13 +1,13 @@
+import sys, os
+if 'BOOKXCHANGE_PROD' not in os.environ:
+    sys.path.append("C:\\Python27\\lib\\site-packages\\")
+reload(sys)
+print('\n'.join(sys.path))
+sys.setdefaultencoding('utf-8')
+
 import os, logging, webapp2, jinja2
 from handlers import *
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
-# Add required paths
-#import sys
-#import google
-#sys.path.insert(0, '/home/vmagent/app/lib')
 
 # Setup configuration
 config = {}
