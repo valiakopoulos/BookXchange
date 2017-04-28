@@ -3,7 +3,9 @@
 <div id="Main" role="main">
     <div class="sizeWrapper">
         <div class="profilePageWrapper">
-            {% if user %}
+            {% if banned %}
+                <div style="text-align: center; width: 100%;">You've been banned! Please contact bookxchange@uwm.edu for more information.</div>
+            {% elif user %}
                 <div class="aside">
                     <div class="profile panel">
                         <div class="name">{{ user.first_name }} {{ user.last_name}}</div>

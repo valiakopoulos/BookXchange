@@ -8,6 +8,8 @@ class AddBookHandler(BaseHandler):
     def get(self, action):
         email = self.session.get('email')
         user = User.get_user(email)
+        if user['is_banned']:
+            self.redirect('/')
         if not user:
             return self.redirect('/login')
         logging.info(user)

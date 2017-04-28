@@ -16,6 +16,8 @@ class SearchHandler(BaseHandler):
     def post(self):
         email = self.session.get('email')
         user = User.get_user(email)
+        if user['is_banned']:
+            self.redirect('/')
         listings = BookListing.search_listings(self.request.get('search'))
         context = {
             'title': "Book Xchange",

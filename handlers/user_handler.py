@@ -8,6 +8,8 @@ class UserHandler(BaseHandler):
         email = self.session.get('email')
         try:
             user = User.get_user(email)
+            if user['is_banned']:
+                self.redirect('/')
         except AttributeError:
             user = None
         if user is None:

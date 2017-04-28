@@ -105,6 +105,9 @@ class User():
             result = db.query(_User).filter(_User.id==user_id).one()
             result.is_banned = 1
             db.commit()
+            for listing in db.query(_BookListing).filter(_BookListing.user_id==user_id).all():
+                listing.active = 0
+            db.commit()
             db.close()
         except:
             db.rollback()

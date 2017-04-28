@@ -6,8 +6,11 @@ import logging
 class MainHandler(BaseHandler):
     def get(self):
         email = self.session.get('email')
+        banned = False
         try:
             user = User.get_user(email)
+            if user['is_banned']:
+                banned = True
         except AttributeError:
             user = None
         if user is None:
@@ -22,7 +25,8 @@ class MainHandler(BaseHandler):
             'title': "Book Xchange",
             'user': user,
             'buybooks': buybooks,
-            'sellbooks': sellbooks
+            'sellbooks': sellbooks,
+            'banned': banned
         }
         template = self.template_env.get_template('home.html')
         self.response.write(template.render(context))
