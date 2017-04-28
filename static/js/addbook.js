@@ -15,13 +15,19 @@ function submitForm() {
     });
 
     request.done(function (html) {
-        $('#bookplacement').html(html);
-        $('#addbook_button').removeAttr('disabled');
+        $('#booksearch').html(html);
+        $('.addBook').each(function () {
+            $(this).click(function () {
+                $('#bookplacement').html($('#' + $(this).val()).html());
+                $('#booksearch').html('');
+                $('#addbook_button').removeAttr('disabled');
+            });
+        });
     });
 
     request.fail(function(jqXHR, textStatus) {
         $('#bookplacement').html('Could not find the book!<br />');
-        $('#addbook_button').attr('disabled', true);
+        //$('#addbook_button').attr('disabled', true);
     });
 }
 

@@ -11,9 +11,9 @@ class SearchBookHandler(BaseHandler):
     def post(self):
         isbn = str(self.request.get('isbn'))
         context = {
-            'book': Book.find_book(isbn=isbn)
+            'books': Book.find_book(term=isbn)
         }
-        if context['book'] is None:
+        if context['books'] is None:
             self.response.set_status(500)
             return
         print(context)

@@ -61,13 +61,16 @@
                         Search Results
                     </h3>
                     <hr />
-                    {% for book in books %}
+                    <form id="deactivateListing">
+                        {% set deactivateListingForm = true %}
+                        {% for book in books %}
                         {% include "book_listing.html" %}
-                    {% endfor %}
-                </div>
+                        {% endfor %}
+                    </form>
+</div>
             </div>
         </div>
         <div class="col-lg-1"></div>
 </div>
-
+<script src="/static/js/admin.js"></script>
 {% include "footer.html" %}

@@ -38,7 +38,7 @@ class Book():
         return book
 
     @classmethod
-    def find_book(cls, isbn=None, google_id=None):
+    def find_book(cls, isbn=None, google_id=None, term=None):
         """
         Returns a book by its isbn or google_id
         """
@@ -55,6 +55,14 @@ class Book():
             except:
                 return None
             return cls.parse_book(response)
+        if term is not None:
+            response = service.volumes().list(source="public", q=term).execute()
+            if response['totalItems'] == 0:
+                return None
+            books = []
+            for item in response['items']:
+                books.append(cls.parse_book(item))
+            return books
         return None
 
     @classmethod

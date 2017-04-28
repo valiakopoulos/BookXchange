@@ -1,12 +1,15 @@
-﻿<div class="book panel">
-    <div class="image">
-        <img src="{{ book.imageLinks.thumbnail }}"/>
+﻿{% for book in books %}
+    <div class="book panel" id="{{ book.google_id }}">
+        <div class="image">
+            <img src="{{ book.imageLinks.thumbnail }}"/>
+        </div>
+        <div class="info">
+            <div class="title">{{ book.title }}</div>
+            <div class="author">{{ book.authors }}</div>
+            <div class="isbn">{{ book.ISBN_10 }} ({{ book.ISBN_13 }})</div>
+            <div class="type">{{ book.description }}</div>
+            <button class="addBook" value="{{ book.google_id }}">Add This Book</button>
+            <input type="hidden" name="google_id" value="{{ book.google_id }}" />
+        </div>
     </div>
-    <div class="info">
-        <div class="title">{{ book.title }}</div>
-        <div class="author">{{ book.authors }}</div>
-        <div class="isbn">{{ book.ISBN_10 }} ({{ book.ISBN_13 }})</div>
-        <div class="type">{{ book.description }}</div>
-        <input type="hidden" name="google_id" value="{{ book.google_id }}" />
-    </div>
-</div>
+{% endfor %}

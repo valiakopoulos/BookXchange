@@ -1,6 +1,7 @@
 $("#deactivateListing").submit(function (event) {
     // cancels the form submission
     event.preventDefault();
+
     submitForm(document.activeElement.id);
 });
 
