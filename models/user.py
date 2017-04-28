@@ -12,7 +12,7 @@ class User():
         """
         db = connect()
         try:
-            logging.info('Attempting to login with email: ' + email)
+            #logging.info('Attempting to login with email: ' + email)
             result = db.query(_User).filter(_User.email == email).one()
             result.last_login = datetime.datetime.now()
             db.commit()
@@ -42,7 +42,7 @@ class User():
         """
         db = connect()
         try:
-            logging.info('Attempting to get the user via the email ' + str(email) + ' or the id ' + str(id) + '.')
+            #logging.info('Attempting to get the user via the email ' + str(email) + ' or the id ' + str(id) + '.')
             query = db.query(_User)
             if email is not None:
                 query = query.filter(_User.email == email)
@@ -63,6 +63,7 @@ class User():
                                        _User.email,
                                        _User.username).join(_User, _User.id==_UserReview.reviewer_id).filter(_UserReview.reviewee_id==user['id']).all()
             db.close()
+            #print(user)
             return user
         except NoResultFound:
             logging.info('User not found.')

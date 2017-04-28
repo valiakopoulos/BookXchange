@@ -11,11 +11,18 @@
             <div class="comments">Comments: "{{ book.comments }}"</div>
         {% endif %}
         <div class="seller">
-            Sold by: <a href="#">{{ book.first_name }} {{ book.last_name }}</a>
+            Sold by: <a href="/user/{{ book.user_id }}">{{ book.first_name }} {{ book.last_name }}</a>
         </div>
         <div class="sellingInfo">
             <div class="price">${{ '%0.2f'| format(book.price|float) }}</div>
             <!--<button class="buy">BUY</button>-->
         </div>
+        {% if user.is_admin %}
+            {% if deactivateListingForm %}
+                <div class="form-group">
+                    <button id="listing_id_{{ book.id }}" type="submit">Deactivate Listing</button>
+                </div>
+            {% endif %}
+        {% endif %}
     </div>
 </div>

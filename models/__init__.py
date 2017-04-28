@@ -8,7 +8,8 @@ from sqlalchemy.orm import sessionmaker
 Base = automap_base()
 # Get the database URI set in app.yaml
 # mysql+pymysql://root:hamlgroup@127.0.0.1:3306/bookxchange
-engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'], convert_unicode=True)
+engine = create_engine('mysql+pymysql://root:hamlgroup@127.0.0.1:3306/bookxchange', convert_unicode=True)
+#engine = create_engine(os.environ['SQLALCHEMY_DATABASE_URI'], convert_unicode=True)
 # Generate the classes!
 Base.prepare(engine, reflect=True)
 

@@ -92,3 +92,7 @@ ENV/
 #Py-dev Project Files
 .project
 .pydevproject
+/.vs/ProjectSettings.json
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
+/.vs/BookXchange/v15/.suo

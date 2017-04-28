@@ -6,6 +6,11 @@ import logging, os
 
 class LoginHandler(BaseHandler):
     def get(self):
+        try:
+            del self.session['email']
+        except KeyError:
+            # This will happen if the user is already logged out. Ignore it and move on with life
+            pass
         if 'BOOKXCHANGE_PROD' in os.environ:
             return self.redirect('https://idp.uwm.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=https%3A%2F%2Fbookxchange-cs595.appspot.com%2Fsaml%2Fmetadata')
         logging.info("LoginHandler: get()")
@@ -20,7 +25,7 @@ class LoginHandler(BaseHandler):
         if 'BOOKXCHANGE_PROD' in os.environ:
             return self.redirect('https://idp.uwm.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=https%3A%2F%2Fbookxchange-cs595.appspot.com%2Fsaml%2Fmetadata')
         logging.info("LoginHandler: post()")
-        email = 'dev' + self.request.get('email')
+        email = self.request.get('email')
         user = User.get_user(email)
         print('User:', user)
         if not user:

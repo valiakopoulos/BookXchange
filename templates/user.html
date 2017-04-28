@@ -1,0 +1,72 @@
+﻿{% include "header.html" %}
+
+<div id="Main" role="main">
+    <div class="sizeWrapper">
+        <div class="profilePageWrapper">
+            {% if other_user %}
+                <div class="aside">
+                    <div class="profile panel">
+                        <div class="name">{{ other_user.email}}</div>
+                        <div class="stat">{{ other_user.sold }} Sold</div>
+                        <div class="stat">{{ other_user.purchased }} Purchased</div>
+                        <div class="stat">{{ other_user.listed_for_sale }} Books for Sale</div>
+                        <div class="stat">{{ other_user.listed_for_purchase }} Books Wanted</div>
+                        <div class="stat">{{ other_user.rating }} / 5</div>
+                    </div>
+                    <div class="reviews panel">
+                        <div class="reviewsHeader">Reviews</div>
+                        {% if other_user.reviews|length > 0 %}
+                            {% for review in other_user.reviews %}
+                                <div class="review">
+                                    <div class="reviewStars">
+                                        {% if review.rating < 0.5 %}
+                                            ☆☆☆☆☆
+                                        {% elif review.rating < 1.5 %}
+                                            ★☆☆☆☆
+                                        {% elif review.rating < 2.5 %}
+                                            ★★☆☆☆
+                                        {% elif review.rating < 3.5 %}
+                                            ★★★☆☆
+                                        {% elif review.rating < 4.5 %}
+                                            ★★★★☆
+                                        {% else %}
+                                            ★★★★★
+                                        {% endif %}
+                                    </div>
+                                    <div class="reviewText">"{{ review.comments }}"</div>
+                                    <div class="reviewer">-<a href="#">{{ review.first_name }} {{ review.last_name }}</a></div>
+                                    <div class="reviewer">{{ review.date_posted }}</a></div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="review">
+                                <div class="reviewText">No one has written awesome things about you yet. :-(</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <form id="deactivateListing">
+                    {% set deactivateListingForm = true %}
+                    <div class="bookListing">
+                        <div class="bookSectionHeader">
+                            <div>User is selling:</div>
+                        </div>
+                        {% for book in sellbooks %}
+                        {% include "book_listing.html" %}
+                        {% endfor %}
+                        <div class="bookSectionHeader">
+                            <div>User is looking for:</div>
+                        </div>
+                        {% for book in buybooks %}
+                        {% include "book_listing.html" %}
+                        {% endfor %}
+                    </div>
+                </form>
+                {% else %}
+                <div style="text-align: center; width: 100%;">Could not find user. Sorry!</div>
+                {% endif %}
+</div>
+    </div>
+</div>
+<script src="/static/js/admin.js"></script>
+{% include "footer.html" %}

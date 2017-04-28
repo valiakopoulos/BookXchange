@@ -8,9 +8,11 @@ threadsafe: true
 #  instances: 1
 #health_check:
 #  enable_health_check: False
-env_variables:
-  SQLALCHEMY_DATABASE_URI: >-
-    mysql+pymysql://root:hamlgroup@127.0.0.1:3306/bookxchange
+#env_variables:
+#  SQLALCHEMY_DATABASE_URI: >-
+#    mysql+pymysql://root:hamlgroup@127.0.0.1:3306/bookxchange
+#  SQLALCHEMY_DATABASE_URI: >- 
+#    mysql+pymysql://root:hamlgroup@/bookxchange?unix_socket=/cloudsql/bookxchange-cs595:us-central1:bookxchange-cs595
 #  BOOKXCHANGE_PROD: true
 #beta_settings:
 #  cloud_sql_instances: bookxchange-cs595:us-central1:bookxchange-cs595

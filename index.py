@@ -2,7 +2,6 @@ import sys, os
 if 'BOOKXCHANGE_PROD' not in os.environ:
     sys.path.append("C:\\Python27\\lib\\site-packages\\")
 reload(sys)
-print('\n'.join(sys.path))
 sys.setdefaultencoding('utf-8')
 
 import os, logging, webapp2, jinja2
@@ -25,7 +24,9 @@ routes = [
     webapp2.Route('/searchbook', handler=SearchBookHandler, name='searchbook'),
     webapp2.Route('/login', handler=LoginHandler, name='login'),
     webapp2.Route('/logout', handler=LogoutHandler, name='logout'),
-    webapp2.Route('/static/<directory>/<file>', StaticFileHandler)
+    webapp2.Route('/static/<directory>/<file>', StaticFileHandler),
+    webapp2.Route('/user/<user_id><:/?>', handler=UserHandler, name='user'),
+    webapp2.Route('/deactivate', handler=DeactivateBookHandler, name='deactivate'),
 ]
 
 # If this variable is set, then use SAML.

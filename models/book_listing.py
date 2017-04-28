@@ -5,7 +5,7 @@ import logging, datetime
 
 class BookListing():
     @classmethod
-    def get_requested_books(cls):
+    def get_requested_books(cls, user_id):
         """
         Returns a list of books that are currently listed as "Wanted".
         """
@@ -17,6 +17,7 @@ class BookListing():
                 _BookListing.comments,
                 _BookListing.date_added,
                 _BookListing.listing_type,
+                _BookListing.status,
                 _Book.google_id,
                 _Book.google_link,
                 _Book.title,
@@ -30,11 +31,12 @@ class BookListing():
                 _Book.pages,
                 _Book.small_thumbnail,
                 _Book.thumbnail,
+                _User.id.label('user_id'),
                 _User.username,
                 _User.email,
                 _User.first_name,
                 _User.last_name,
-                _User.rating).join(_Book, _User).filter(_BookListing.listing_type == 'Wanted')
+                _User.rating).join(_Book, _User).filter(_BookListing.listing_type == 'Wanted').filter(_User.id == user_id).filter(_BookListing.active==1)
             results = query.all()
             db.close()
             return results
@@ -44,7 +46,7 @@ class BookListing():
             raise
 
     @classmethod
-    def get_available_books(cls):
+    def get_available_books(cls, user_id):
         """
         Returns a list of books that are currently listed as "For Sale".
         """
@@ -56,6 +58,7 @@ class BookListing():
                 _BookListing.comments,
                 _BookListing.date_added,
                 _BookListing.listing_type,
+                _BookListing.status,
                 _Book.google_id,
                 _Book.google_link,
                 _Book.title,
@@ -69,13 +72,15 @@ class BookListing():
                 _Book.pages,
                 _Book.small_thumbnail,
                 _Book.thumbnail,
+                _User.id.label('user_id'),
                 _User.username,
                 _User.email,
                 _User.first_name,
                 _User.last_name,
-                _User.rating).join(_Book, _User).filter(_BookListing.listing_type == 'For Sale')
+                _User.rating).join(_Book, _User).filter(_BookListing.listing_type == 'For Sale').filter(_User.id == user_id).filter(_BookListing.active==1)
             results = query.all()
             db.close()
+            print(results)
             return results
         except:
             db.rollback()
@@ -134,6 +139,7 @@ class BookListing():
                 _BookListing.comments,
                 _BookListing.date_added,
                 _BookListing.listing_type,
+                _BookListing.status,
                 _Book.google_id,
                 _Book.google_link,
                 _Book.title,
@@ -147,6 +153,7 @@ class BookListing():
                 _Book.pages,
                 _Book.small_thumbnail,
                 _Book.thumbnail,
+                _User.id.label('user_id'),
                 _User.username,
                 _User.email,
                 _User.first_name,
@@ -176,7 +183,7 @@ class BookListing():
                 conditions.append(_Book.authors.like(term))
                 conditions.append(_Book.publisher.like(term))
                 conditions.append(_Book.description.like(term))
-            query = query.filter(or_(*conditions))
+            query = query.filter(or_(*conditions)).filter(_BookListing.active==1)
 
             # Now's a good time to add filters!
             if 'listing_type' in filters:
@@ -194,6 +201,19 @@ class BookListing():
             results = query.all()
             db.close()
             return results
+        except:
+            db.rollback()
+            db.close()
+            raise
+
+    @classmethod
+    def deactivate(cls, listing_id):
+        try:
+            db = connect()
+            result = db.query(_BookListing).filter(_BookListing.id==listing_id).one()
+            result.active = '0'
+            db.commit()
+            db.close()
         except:
             db.rollback()
             db.close()

@@ -3,8 +3,8 @@ from models.user import User
 from models.book_listing import BookListing
 import logging
 
-class MainHandler(BaseHandler):
-    def get(self):
+class UserHandler(BaseHandler):
+    def get(self, user_id):
         email = self.session.get('email')
         try:
             user = User.get_user(email)
@@ -14,15 +14,20 @@ class MainHandler(BaseHandler):
             sellbooks = []
             buybooks = []
         else:
-            sellbooks = BookListing.get_available_books(user['id'])
-            buybooks = BookListing.get_requested_books(user['id'])
+            sellbooks = BookListing.get_available_books(user_id)
+            buybooks = BookListing.get_requested_books(user_id)
 
+        try:
+            other_user = User.get_user(id=user_id)
+        except:
+            other_user = None
         
         context = {
             'title': "Book Xchange",
+            'other_user': other_user,
             'user': user,
             'buybooks': buybooks,
             'sellbooks': sellbooks
         }
-        template = self.template_env.get_template('home.html')
+        template = self.template_env.get_template('user.html')
         self.response.write(template.render(context))
