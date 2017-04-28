@@ -80,3 +80,20 @@ class User():
             db.close()
             raise
         return None
+
+    @classmethod
+    def change_admin(cls, user_id):
+        try:
+            db = connect()
+            result = db.query(_User).filter(_User.id==user_id).one()
+            if result.is_admin == 1:
+                result.is_admin = 0
+            else:
+                result.is_admin = 1
+            db.commit()
+            db.close()
+        except:
+            db.rollback()
+            db.close()
+            raise
+        return user_id

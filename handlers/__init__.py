@@ -7,6 +7,8 @@ from handlers.static_handler import StaticFileHandler
 from handlers.search_book_handler import SearchBookHandler
 from handlers.user_handler import UserHandler
 from handlers.deactivate_book_handler import DeactivateBookHandler
+from handlers.change_admin_handler import ChangeAdminHandler
+
 import os
 if 'BOOKXCHANGE_PROD' in os.environ:
     from handlers.auth_handler import AuthHandler

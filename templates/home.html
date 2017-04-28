@@ -7,6 +7,9 @@
                 <div class="aside">
                     <div class="profile panel">
                         <div class="name">{{ user.first_name }} {{ user.last_name}}</div>
+                        {% if user.is_admin %}
+                        <div class="stat">Administrator</div>
+                        {% endif %}
                         <div class="stat">{{ user.email }}</div>
                         <div class="stat">{{ user.sold }} Sold</div>
                         <div class="stat">{{ user.purchased }} Purchased</div>

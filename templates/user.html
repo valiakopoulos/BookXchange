@@ -6,7 +6,11 @@
             {% if other_user %}
                 <div class="aside">
                     <div class="profile panel">
-                        <div class="name">{{ other_user.email}}</div>
+                        <div class="name">{{ user.first_name }} {{ user.last_name}}</div>
+                        {% if user.is_admin %}
+                        <div class="stat">Administrator</div>
+                        {% endif %}
+                        <div class="stat">{{ user.email }}</div>
                         <div class="stat">{{ other_user.sold }} Sold</div>
                         <div class="stat">{{ other_user.purchased }} Purchased</div>
                         <div class="stat">{{ other_user.listed_for_sale }} Books for Sale</div>
