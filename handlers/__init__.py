@@ -8,6 +8,7 @@ from handlers.search_book_handler import SearchBookHandler
 from handlers.user_handler import UserHandler
 from handlers.deactivate_book_handler import DeactivateBookHandler
 from handlers.change_admin_handler import ChangeAdminHandler
+from handlers.ban_user_handler import BanUserHandler
 
 import os
 if 'BOOKXCHANGE_PROD' in os.environ:

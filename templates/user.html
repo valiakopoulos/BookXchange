@@ -1,4 +1,4 @@
-﻿{% include "header.html" %}
+{% include "header.html" %}
 
 <div id="Main" role="main">
     <div class="sizeWrapper">
@@ -6,16 +6,21 @@
             {% if other_user %}
                 <div class="aside">
                     <div class="profile panel">
-                        <div class="name">{{ user.first_name }} {{ user.last_name}}</div>
-                        {% if user.is_admin %}
+                        <div class="name">{{ other_user.first_name }} {{ other_user.last_name}}</div>
+                        {% if other_user.is_admin %}
                         <div class="stat">Administrator</div>
                         {% endif %}
-                        <div class="stat">{{ user.email }}</div>
+                        <div class="stat">{{ other_user.email }}</div>
                         <div class="stat">{{ other_user.sold }} Sold</div>
                         <div class="stat">{{ other_user.purchased }} Purchased</div>
                         <div class="stat">{{ other_user.listed_for_sale }} Books for Sale</div>
                         <div class="stat">{{ other_user.listed_for_purchase }} Books Wanted</div>
                         <div class="stat">{{ other_user.rating }} / 5</div>
+                        {% if user.is_admin %}
+                        <form id="banUser">
+                            <button id="{{ other_user.id }}" type="submit">Ban User</button>
+                        </form>
+                        {% endif %}
                     </div>
                     <div class="reviews panel">
                         <div class="reviewsHeader">Reviews</div>

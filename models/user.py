@@ -97,3 +97,16 @@ class User():
             db.close()
             raise
         return user_id
+
+    @classmethod
+    def ban_user(cls, user_id):
+        try:
+            db = connect()
+            result = db.query(_User).filter(_User.id==user_id).one()
+            result.is_banned = 1
+            db.commit()
+            db.close()
+        except:
+            db.rollback()
+            db.close()
+            raise

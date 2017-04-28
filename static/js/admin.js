@@ -20,3 +20,25 @@ function submitForm(id) {
         $('#' + id).html('Failed to deactivate!');
     });
 }
+
+$("#banUser").submit(function (event) {
+    // cancels the form submission
+    event.preventDefault();
+    banUser(document.activeElement.id);
+});
+
+function banUser(id) {
+    var request = $.ajax({
+        type: "POST",
+        url: "/banuser",
+        data: "user_id=" + id
+    });
+
+    request.done(function (html) {
+        $('#' + id).html(html);
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        $('#' + id).html('Failed to ban!');
+    });
+}
