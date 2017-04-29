@@ -256,3 +256,7 @@ input.lowrange, input.highrange {
 .loginPage .loginFields .loginButton {
     align-self: flex-end;
 }
+
+.contactMessage {
+    height: 300px;
+}
