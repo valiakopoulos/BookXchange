@@ -5,6 +5,8 @@ $("#searchBookForm").submit(function (event) {
 });
 
 function submitForm() {
+    $('#GoSearch').prop('disabled', true);
+    $('#booksearch').empty().append($('<div>').addClass('loadingAnimation'));
     // Initiate Variables With Form Content
     var isbn = $("#isbn").val();
 
@@ -18,15 +20,22 @@ function submitForm() {
         $('#booksearch').html(html);
         $('.addBook').each(function () {
             $(this).click(function () {
-                $('#bookplacement').html($('#' + $(this).val()).html());
+                var panel = $('#' + $(this).val());
+                $('.addBook', panel).remove();
+                $('#bookplacement').html(panel[0].outerHTML);
                 $('#booksearch').html('');
                 $('#addbook_button').removeAttr('disabled');
+                setupDescription();
             });
         });
+        setupDescription();
+    $('#GoSearch').prop('disabled', false);
     });
 
     request.fail(function(jqXHR, textStatus) {
-        $('#bookplacement').html('Could not find the book!<br />');
+        $('#booksearch').empty();
+        $('#booksearch').html('Could not find the book!<br />');
+        $('#GoSearch').prop('disabled', false);
         //$('#addbook_button').attr('disabled', true);
     });
 }

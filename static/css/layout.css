@@ -36,6 +36,36 @@ button:active:not(:disabled) {
     box-shadow: 0px -1px 0px #dca810 inset;
 }
 
+.loadingAnimation {
+  width: 40px;
+  height: 40px;
+  background-color: #ffc20f;
+  border-radius: 4px;
+
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
 #Header, #Main {
     width: 100%;
     display: flex;
@@ -188,12 +218,15 @@ input.lowrange, input.highrange {
 .book .info { flex-grow: 1; margin-left: 6px; }
 .book .info div { margin-bottom: 2px; }
 
-.book .info .description, .book .info .description p {
+.book .info .description {
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 12;
-    -webkit-box-orient: vertical;
     margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.book .info .description.scrollshadow {
+    max-height: 100px;
+    box-shadow: inset 0px -4px 4px -2px gray;
 }
 
 .book .info .title { font-weight: bold; font-size: 19px; }
@@ -260,3 +293,12 @@ input.lowrange, input.highrange {
 .contactMessage {
     height: 300px;
 }
+
+.booklistscroll, #booksearch {
+    overflow: auto;
+    max-height: 400px;
+    padding: 0px 6px 6px 6px;
+    margin-top: 8px;
+}
+
+#booksearch { margin-bottom: 8px; }

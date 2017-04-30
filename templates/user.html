@@ -58,17 +58,29 @@
                     {% set deactivateListingForm = true %}
                     <div class="bookListing">
                         <div class="bookSectionHeader">
-                            <div>User is selling:</div>
+                            <div>Selling</div>
                         </div>
-                        {% for book in sellbooks %}
-                        {% include "book_listing.html" %}
-                        {% endfor %}
+                        {% if sellbooks|length > 0 %}
+                            <div class="booklistscroll">
+                            {% for book in sellbooks %}
+                            {% include "book_listing.html" %}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="panel">No books to sell</div>
+                        {% endif %}
                         <div class="bookSectionHeader">
-                            <div>User is looking for:</div>
+                            <div>Wanted</div>
                         </div>
-                        {% for book in buybooks %}
-                        {% include "book_listing.html" %}
-                        {% endfor %}
+                        {% if buybooks|length > 0 %}
+                            <div class="booklistscroll">
+                            {% for book in buybooks %}
+                            {% include "book_listing.html" %}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="panel">No books wanted</div>
+                        {% endif %}
                     </div>
                 </form>
                 {% else %}

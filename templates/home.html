@@ -56,16 +56,28 @@
                         <div>Selling</div>
                         <button onclick="location.href='/addbook/sell';">ADD</button>
                     </div>
-                    {% for book in sellbooks %}
-                        {% include "book_listing.html" %}
-                    {% endfor %}
+                    {% if sellbooks|length > 0 %}
+                        <div class="booklistscroll">
+                        {% for book in sellbooks %}
+                            {% include "book_listing.html" %}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="panel">No books to sell</div>
+                    {% endif %}
                     <div class="bookSectionHeader">
                         <div>Wanted</div>
                         <button onclick="location.href='/addbook/request';">ADD</button>
                     </div>
-                    {% for book in buybooks %}
-                        {% include "book_listing.html" %}
-                    {% endfor %}
+                    {% if buybooks|length > 0 %}
+                        <div class="booklistscroll">
+                        {% for book in buybooks %}
+                            {% include "book_listing.html" %}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="panel">No books wanted</div>
+                    {% endif %}
                 </div>
             {% else %}
                 <div style="text-align: center; width: 100%;">Please Log In</div>
