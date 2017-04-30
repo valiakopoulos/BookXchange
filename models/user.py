@@ -61,7 +61,8 @@ class User():
                                        _User.first_name,
                                        _User.last_name,
                                        _User.email,
-                                       _User.username).join(_User, _User.id==_UserReview.reviewer_id).filter(_UserReview.reviewee_id==user['id']).all()
+                                       _User.username,
+                                       _User.id).join(_User, _User.id==_UserReview.reviewer_id).filter(_UserReview.reviewee_id==user['id']).all()
             db.close()
             #print(user)
             return user

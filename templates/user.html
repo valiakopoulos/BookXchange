@@ -43,7 +43,7 @@
                                         {% endif %}
                                     </div>
                                     <div class="reviewText">"{{ review.comments }}"</div>
-                                    <div class="reviewer">-<a href="#">{{ review.first_name }} {{ review.last_name }}</a></div>
+                                    <div class="reviewer">-<a href="/user/{{ review.id }}">{{ review.first_name }} {{ review.last_name }}</a></div>
                                     <div class="reviewer">{{ review.date_posted }}</a></div>
                                 </div>
                             {% endfor %}
