@@ -218,6 +218,18 @@ class BookListing():
             db.rollback()
             db.close()
             raise
+        
+    @classmethod
+    def remove(cls, listing_id):
+        try:
+            db = connect()
+            result = db.query(_BookListing).filter(_BookListing.id==listing_id).delete()
+            db.commit()
+            db.close()
+        except:
+            db.rollback()
+            db.close()
+            raise
 
     @classmethod
     def get_owner(cls, listing_id):

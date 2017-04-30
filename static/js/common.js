@@ -9,6 +9,26 @@ function setupDescription() {
    });
 }
 
+function removeBook(bookId, e) {
+    var panel = $(e).closest('.book');
+    panel.append($('<div>').addClass('block').append($('<div>').addClass('loadingAnimation')));
+    var request = $.ajax({
+        type: "POST",
+        url: "/removebook",
+        data: "book_id=" + bookId
+    });
+
+    request.done(function (html) {
+        panel.slideUp(500, function() { panel.remove(); });
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        $('.block', panel).remove();
+        alert('Failed to removed book');
+    });
+}
+
+
 $(function() {
    setupDescription();
 });

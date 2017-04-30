@@ -16,8 +16,8 @@
         </div>
         <div class="sellingInfo">
             {% if isuserprofile %}
-                <button class="markRemoved">Remove</button>
-                <button class="markSold">Sold</button>
+            <button class="markRemoved" onclick="removeBook('{{ book.id }}', this);">Remove</button>
+            <button class="markSold">Sold</button>
             {% endif %}
             {% if user.id != book.user_id %}
                 <button class="buy">Buy</button>

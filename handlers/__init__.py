@@ -9,6 +9,7 @@ from handlers.user_handler import UserHandler
 from handlers.deactivate_book_handler import DeactivateBookHandler
 from handlers.change_admin_handler import ChangeAdminHandler
 from handlers.ban_user_handler import BanUserHandler
+from handlers.remove_book_handler import RemoveBookHandler
 
 import os
 if 'BOOKXCHANGE_PROD' in os.environ:
