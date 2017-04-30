@@ -26,7 +26,8 @@ class MainHandler(BaseHandler):
             'user': user,
             'buybooks': buybooks,
             'sellbooks': sellbooks,
-            'banned': banned
+            'banned': banned,
+            'isuserprofile': True
         }
         template = self.template_env.get_template('home.html')
         self.response.write(template.render(context))
