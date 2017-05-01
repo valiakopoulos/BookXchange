@@ -75,6 +75,7 @@ button:active:not(:disabled) {
 #Header {
     background-color: #ffc20f;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .sizeWrapper {
