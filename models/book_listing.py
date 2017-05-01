@@ -238,6 +238,32 @@ class BookListing():
             raise
 
     @classmethod
+    def mark_on_hold(cls, listing_id):
+        try:
+            db = connect()
+            result = db.query(_BookListing).filter(_BookListing.id==listing_id).one()
+            result.status = 'On Hold'
+            db.commit()
+            db.close()
+        except:
+            db.rollback()
+            db.close()
+            raise
+
+    @classmethod
+    def mark_sold(cls, listing_id):
+        try:
+            db = connect()
+            result = db.query(_BookListing).filter(_BookListing.id==listing_id).one()
+            result.status = 'Sold'
+            db.commit()
+            db.close()
+        except:
+            db.rollback()
+            db.close()
+            raise
+
+    @classmethod
     def get_owner(cls, listing_id):
         try:
             db = connect()

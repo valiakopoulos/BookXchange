@@ -30,6 +30,7 @@ routes = [
     webapp2.Route('/changeadmin', handler=ChangeAdminHandler, name='changeadmin'),
     webapp2.Route('/banuser', handler=BanUserHandler, name='banuser'),
     webapp2.Route('/removebook', handler=RemoveBookHandler, name='removebook'),
+    webapp2.Route('/sendemail', handler=SendEmailHandler, name='sendemail')
 ]
 
 # If this variable is set, then use SAML.
