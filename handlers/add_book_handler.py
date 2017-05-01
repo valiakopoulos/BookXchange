@@ -55,10 +55,4 @@ class AddBookHandler(BaseHandler):
                 BookListing.sell_book(new_book, user['id'], price, binding, condition, comments)
             else:
                 BookListing.request_book(new_book, user['id'], price, binding, condition, comments)
-        context = {
-            'title': "Book Xchange - Book Listed!",
-            'user': user,
-            'error': error
-        }
-        template = self.template_env.get_template('addbook.html')
-        self.response.write(template.render(context))
+        return self.redirect('/')
