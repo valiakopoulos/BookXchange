@@ -4,56 +4,61 @@
     <div class="container">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-            <div class="panel panel-warning">
-                <div class="filters panel-body">
-                    <h3 class="top-buffer">
-                        Filters
-                    </h3>
-                    <hr />
-                    <div>
-                        <label>Listing:</label>
-                        <select>
-                            <option value="0">Selling</option>
-                            <option value="1">Wanted</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Binding:</label>
-                        <select>
-                            <option value="Paperback">Paperback</option>
-                            <option value="Hardcover">Hardcover</option>
-                            <option value="Loose Leaf">Loose Leaf</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Condition:</label>
-                        <select>
-                            <option value="1">New</option>
-                            <option value="2">Like New</option>
-                            <option value="3">Very Good</option>
-                            <option value="3">Good</option>
-                            <option value="3">Acceptable</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input class="lowrange" type="text" placeholder="$0.00"/> to <input class="highrange" type="text" placeholder="$0.00"/>
+            <form id="searchTheBooks" action="/search" method="post">
+                <input type="hidden" name="search" value="{{ search }}" />
+                <div class="panel panel-warning">
+                    <div class="filters panel-body">
+                        <h3 class="top-buffer">
+                            Filters
+                        </h3>
+                        <hr />
+                        <div>
+                            <label>Listing:</label>
+                            <select name="listing_type">
+                                <option value=""></option>
+                                <option value="For Sale" {% if 'listing_type' in filters and filters.listing_type == 'For Sale' %}selected="selected"{% endif %}>Selling</option>
+                                <option value="Wanted" {% if 'listing_type' in filters and filters.listing_type == 'Wanted' %}selected="selected"{% endif %}>Wanted</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Binding:</label>
+                            <select name="binding">
+                                <option value=""></option>
+                                <option value="Paperback" {% if 'binding' in filters and filters.binding == 'Paperback' %}selected="selected"{% endif %}>Paperback</option>
+                                <option value="Hardcover" {% if 'binding' in filters and filters.binding == 'Hardcover' %}selected="selected"{% endif %}>Hardcover</option>
+                                <option value="Loose Leaf" {% if 'binding' in filters and filters.binding == 'Loose Leaf' %}selected="selected"{% endif %}>Loose Leaf</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Condition:</label>
+                            <select name="condition">
+                                <option value=""></option>
+                                <option value="New" {% if 'condition' in filters and filters.condition == 'New' %}selected="selected"{% endif %}>New</option>
+                                <option value="Like New" {% if 'condition' in filters and filters.condition == 'Like New' %}selected="selected"{% endif %}>Like New</option>
+                                <option value="Very Good" {% if 'condition' in filters and filters.condition == 'Very Good' %}selected="selected"{% endif %}>Very Good</option>
+                                <option value="Good" {% if 'condition' in filters and filters.condition == 'Good' %}selected="selected"{% endif %}>Good</option>
+                                <option value="Acceptable" {% if 'condition' in filters and filters.condition == 'Acceptable' %}selected="selected"{% endif %}>Acceptable</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input class="lowrange" name="low_price" type="text" placeholder="$0.00" {% if 'low_price' in filters %}value="{{filters.low_price}}"{% endif %}/> to <input name="max_price" class="highrange" type="text" placeholder="$0.00" {% if 'max_price' in filters %}value="{{filters.max_price}}"{% endif %}/>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="panel panel-warning">
-                <div class="panel-body">
-                    <h3 class="top-buffer">
-                        Sort By
-                    </h3>
-                    <hr />
-                    <select>
-                        <option value="1">Price low to high</option>
-                        <option value="2">Price high to low</option>
-                        <option value="3">Seller reputation</option>
-                    </select>
+                <div class="panel panel-warning">
+                    <div class="panel-body">
+                        <h3 class="top-buffer">
+                            Sort By
+                        </h3>
+                        <hr />
+                        <select name="ordering">
+                            <option value="1" {% if 'ordering' in filters and filters.ordering == '1' %}selected="selected"{% endif %}>Price low to high</option>
+                            <option value="2" {% if 'ordering' in filters and filters.ordering == '2' %}selected="selected"{% endif %}>Price high to low</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <button>APPLY</button>
+                <button id="searchThoseBooks" type="submit">APPLY</button>
+            </form>
         </div>
         <div class="col-lg-7">
             <div class="panel-warning">

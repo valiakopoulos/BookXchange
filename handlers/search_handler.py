@@ -16,13 +16,21 @@ class SearchHandler(BaseHandler):
     def post(self):
         email = self.session.get('email')
         user = User.get_user(email)
+        post_values = dict(self.request.POST)
+        filters = {}
+        for k in post_values:
+            if post_values[k] != '':
+                filters[k] = post_values[k]
+        print(filters)
         if user['is_banned']:
             self.redirect('/')
-        listings = BookListing.search_listings(self.request.get('search'))
+        listings = BookListing.search_listings(self.request.get('search'), filters)
         context = {
             'title': "Book Xchange",
             'user': user,
-            'books': listings
+            'books': listings,
+            'search': self.request.get('search'),
+            'filters': filters
         }
         template = self.template_env.get_template('search.html')
         self.response.write(template.render(context))

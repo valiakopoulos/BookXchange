@@ -194,15 +194,22 @@ class BookListing():
             # Now's a good time to add filters!
             if 'listing_type' in filters:
                 query = query.filter(_BookListing.listing_type == filters['listing_type'])
+            if 'binding' in filters:
+                query = query.filter(_BookListing.binding == filters['binding'])
             if 'condition' in filters:
-                conditions = []
-                for cond in filters['condition']:
-                    conditions.append(_BookListing.condition == cond)
-                query = query.filter(or_(*conditions))
+                query = query.filter(_BookListing.condition == filters['condition'])
             if 'max_price' in filters:
                 query = query.filter(_BookListing.price <= filters['max_price'])
             if 'low_price' in filters:
                 query = query.filter(_BookListing.price >= filters['low_price'])
+            if 'ordering' in filters:
+                if filters['ordering'] == '2':
+                    query = query.order_by(_BookListing.price.desc())
+                else:
+                    query = query.order_by(_BookListing.price.asc())
+            else:
+                print('give up')
+                query = query.order_by(_BookListing.price.asc())
 
             results = query.all()
             db.close()

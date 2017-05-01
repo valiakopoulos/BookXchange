@@ -28,6 +28,12 @@ function removeBook(bookId, e) {
     });
 }
 
+$("#searchTheBooks").submit(function (event) {
+    // cancels the form submission
+    event.preventDefault();
+    console.log('hey');
+});
+
 
 $(function() {
    setupDescription();
