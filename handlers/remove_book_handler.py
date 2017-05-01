@@ -10,5 +10,5 @@ class RemoveBookHandler(BaseHandler):
         user = User.get_user(email)
         id = self.request.get('book_id');
         logging.info('Removing book with ID: ' + id)
-        BookListing.remove(id);
+        BookListing.deactivate(id);
         self.response.write('Removed')

@@ -20,7 +20,7 @@
             <button class="markSold">Sold</button>
             {% endif %}
             {% if user.id != book.user_id %}
-                <button class="buy">Buy</button>
+            <button type="button" class="buy" data-toggle="modal" data-target="#exampleModal" data-user-id="{{book.user_id}}" data-whatever="{{ book.first_name }} {{ book.last_name }}" data-listing="{{ book.id }}">Buy</button>
             {% endif %}
             {% if user.is_admin %}
                 {% if deactivateListingForm %}
