@@ -75,7 +75,6 @@ button:active:not(:disabled) {
 #Header {
     background-color: #ffc20f;
     font-weight: bold;
-    height: 40px;
 }
 
 .sizeWrapper {
@@ -102,24 +101,28 @@ button:active:not(:disabled) {
     background-color: rgba(0,0,0,0);
     border: none;
     border-bottom: 1px solid black;
-    flex-grow: 1;
-    margin: 0 20px;
     font-size: 16px;
-    width: 800px !important;
+    width: 700px !important;
     box-shadow: none !important;
     border-radius: 0px !important;
     outline: none !important;
+    margin: 0;
+}
+
+.searchForm { 
+    margin: 0 20px;
+}
+
+#Header .form-group {
+    margin: 7px 0 !important;
 }
 
 @media(max-width: 1200px) {
     .searchBooks {
-        width: 630px !important;
+        width: 100% !important;
     }
-}
-
-@media(max-width: 1000px) {
-    .searchBooks {
-        width: 420px !important;
+    .searchForm {
+    flex-grow: 1;
     }
 }
 
