@@ -6,6 +6,8 @@ $("#deactivateListing").submit(function (event) {
 });
 
 function submitForm(id) {
+    var panel = $('#' + id).closest('.book');
+    panel.append($('<div>').addClass('block').append($('<div>').addClass('loadingAnimation')));
     var request = $.ajax({
         type: "POST",
         url: "/deactivate",
@@ -14,6 +16,7 @@ function submitForm(id) {
 
     request.done(function (html) {
         $('#' + id).html(html);
+        panel.slideUp(500, function() { panel.remove(); });
     });
 
     request.fail(function(jqXHR, textStatus) {
@@ -28,6 +31,8 @@ $("#banUser").submit(function (event) {
 });
 
 function banUser(id) {
+    var panel = $('#' + id).closest('.panel');
+    panel.append($('<div>').addClass('block').append($('<div>').addClass('loadingAnimation')));
     var request = $.ajax({
         type: "POST",
         url: "/banuser",
@@ -36,6 +41,7 @@ function banUser(id) {
 
     request.done(function (html) {
         $('#' + id).html(html);
+        $('.block', panel).remove();
     });
 
     request.fail(function (jqXHR, textStatus) {

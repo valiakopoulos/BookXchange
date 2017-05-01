@@ -6,6 +6,7 @@ $("#searchBookForm").submit(function (event) {
 
 function submitForm() {
     $('#GoSearch').prop('disabled', true);
+    $('#bookplacement').empty();
     $('#booksearch').empty().append($('<div>').addClass('loadingAnimation'));
     // Initiate Variables With Form Content
     var isbn = $("#isbn").val();

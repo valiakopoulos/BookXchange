@@ -156,7 +156,7 @@ input.lowrange, input.highrange {
 }
 
 .panel .block {
-    background: rgba(100, 100, 100, 0.5);
+    background: rgba(150, 150, 150, 0.5);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -243,10 +243,11 @@ input.lowrange, input.highrange {
 .book .info .title { font-weight: bold; font-size: 19px; }
 .book .info .author { font-size: 17px; }
 .book .info .isbn { font-style: italic; margin-bottom: 10px;}
-.book .info .seller, .book .info .comments { font-style: italic; }
+.book .info .seller, .book .info .comments, .book .info .condition { font-style: italic; }
 .book .info .description,
 .book .info .comments,
-.book .info .seller {
+.book .info .seller,
+.book .info .condition {
     color: gray;
 }
 

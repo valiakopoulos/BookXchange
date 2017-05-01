@@ -52,9 +52,9 @@ class AddBookHandler(BaseHandler):
             print(action)
             logging.info(action)
             if action == 'sell':
-                BookListing.sell_book(new_book, user['id'], price, condition, comments)
+                BookListing.sell_book(new_book, user['id'], price, binding, condition, comments)
             else:
-                BookListing.request_book(new_book, user['id'], price, condition, comments)
+                BookListing.request_book(new_book, user['id'], price, binding, condition, comments)
         context = {
             'title': "Book Xchange - Book Listed!",
             'user': user,

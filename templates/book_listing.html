@@ -7,7 +7,9 @@
         <div class="author">{{ book.authors }}</div>
         <div class="isbn">{{ book.ISBN_10 }} ({{ book.ISBN_13 }})</div>
         <div class="description">{{ book.description }}</div>
-        <div class="fadedesc"></div>
+        {% if book.condition and book.binding %}
+            <div class="condition">{{ book.binding }} - {{ book.condition }}</div>
+        {% endif %}
         {% if book.comments %}
             <div class="comments">Comments: "{{ book.comments }}"</div>
         {% endif %}

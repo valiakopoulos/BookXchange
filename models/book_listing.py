@@ -18,6 +18,8 @@ class BookListing():
                 _BookListing.date_added,
                 _BookListing.listing_type,
                 _BookListing.status,
+                _BookListing.condition,
+                _BookListing.binding,
                 _Book.google_id,
                 _Book.google_link,
                 _Book.title,
@@ -59,6 +61,8 @@ class BookListing():
                 _BookListing.date_added,
                 _BookListing.listing_type,
                 _BookListing.status,
+                _BookListing.condition,
+                _BookListing.binding,
                 _Book.google_id,
                 _Book.google_link,
                 _Book.title,
@@ -88,14 +92,14 @@ class BookListing():
             raise
 
     @classmethod
-    def sell_book(cls, book_id, user_id, price, condition, description):
+    def sell_book(cls, book_id, user_id, price, binding, condition, description):
         """
         Lists a book as "For Sale"
         """
         try:
             db = connect()
             new_listing = _BookListing(book_id=book_id, user_id=user_id, price=price, condition=condition,
-                                       comments=description, date_added=datetime.datetime.now(), listing_type='For Sale')
+                                       comments=description, binding=binding, date_added=datetime.datetime.now(), listing_type='For Sale')
             db.add(new_listing)
             db.commit()
             return True
@@ -105,14 +109,14 @@ class BookListing():
             raise
     
     @classmethod
-    def request_book(cls, book_id, user_id, price, condition, description):
+    def request_book(cls, book_id, user_id, price, binding, condition, description):
         """
         Lists a book as "Wanted"
         """
         try:
             db = connect()
             new_listing = _BookListing(book_id=book_id, user_id=user_id, price=price, 
-                                       comments=description, date_added=datetime.datetime.now(), listing_type='Wanted')
+                                       comments=description, binding=binding, date_added=datetime.datetime.now(), listing_type='Wanted')
             db.add(new_listing)
             db.commit()
             return True
@@ -140,6 +144,8 @@ class BookListing():
                 _BookListing.date_added,
                 _BookListing.listing_type,
                 _BookListing.status,
+                _BookListing.condition,
+                _BookListing.binding,
                 _Book.google_id,
                 _Book.google_link,
                 _Book.title,
