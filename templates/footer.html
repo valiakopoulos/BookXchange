@@ -6,6 +6,7 @@
                 <h4 class="modal-title" id="exampleModalLabel">New message</h4>
             </div>
             <div class="modal-body">
+                <label for="message-text" class="control-label">Book: </label> <span class="book-title"></span>
                 <form>
                     <input type="hidden" name="listing_id" />
                     <input type="hidden" name="user_id" />
@@ -16,8 +17,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="sendEmail();">Send message</button>
+                <button type="button" data-dismiss="modal">Close</button>
+                <button type="button" onclick="sendEmail();">Send message</button>
             </div>
         </div>
     </div>

@@ -13,6 +13,7 @@ class SendEmailHandler(BaseHandler):
         uid = self.request.get('user_id');
         other_user = User.get_user(id=uid)
         server = smtplib.SMTP('smtp.1and1.com', 587)
+        #server.ehlo()
         server.starttls()
         server.login("username@example.com", "password")
  
